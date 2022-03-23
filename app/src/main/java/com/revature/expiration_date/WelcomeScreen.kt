@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Main() {
-    Text(text = "Hello World")
+    Text(text = "Hello World!")
 }
 
 @Preview(showBackground = true)
