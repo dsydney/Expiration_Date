@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Main()
                 }
             }
         }
@@ -30,14 +30,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun Main() {
+    //
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     Expiration_DateTheme {
-        Greeting("Android")
+        Main()
     }
 }
