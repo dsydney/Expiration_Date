@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Expiration_Date</string>
     <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_product_entry">ProductEntry</string>
+    <string name="title_activity_product_view">ProductView</string>
+    <string name="title_activity_notification_settings">NotificationSettings</string>
 </resources>

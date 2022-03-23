@@ -10,6 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Expiration_Date">
         <activity
+            android:name=".NotificationSettings"
+            android:exported="false"
+            android:label="@string/title_activity_notification_settings"
+            android:theme="@style/Theme.Expiration_Date" />
+        <activity
+            android:name=".ProductView"
+            android:exported="false"
+            android:label="@string/title_activity_product_view"
+            android:theme="@style/Theme.Expiration_Date" />
+        <activity
+            android:name=".ProductEntry"
+            android:exported="false"
+            android:label="@string/title_activity_product_entry"
+            android:theme="@style/Theme.Expiration_Date" />
+        <activity
+            android:name=".Registration"
+            android:exported="false"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/Theme.Expiration_Date" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false"
             android:label="@string/title_activity_main2"
