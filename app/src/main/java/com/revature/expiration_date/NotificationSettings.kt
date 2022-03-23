@@ -22,7 +22,7 @@ class NotificationSettings : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting5("Android")
+                    Greeting5("Notification")
                 }
             }
         }
