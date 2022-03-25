@@ -1,14 +1,20 @@
 package com.revature.expiration_date
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
@@ -22,7 +28,7 @@ class Registration : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting2("Android")
+                    RegistrationScreen()
                 }
             }
         }
@@ -30,14 +36,86 @@ class Registration : ComponentActivity() {
 }
 
 @Composable
-fun Greeting2(name: String) {
-    Text(text = "Hello $name!")
+fun RegistrationScreen() {
+    val context = LocalContext.current
+
+    Column {
+        TopAppBar() {
+            Text(text = "Registration Screen")
+        }
+        Column(
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
+            //TextField Email
+            val email = rememberSaveable {
+                mutableStateOf("")
+            }
+            TextField(
+                value = email.value,
+                onValueChange = {email.value = it},
+                label = {
+                    Text(text = "Email")
+                }
+            )
+            //TextField Username
+            val username = rememberSaveable {
+                mutableStateOf("")
+            }
+            TextField(
+                value = username.value,
+                onValueChange = {username.value = it},
+                label = {
+                    Text(text = "Username")
+                }
+            )
+            //TextField Password
+            var password = rememberSaveable {
+                mutableStateOf("")
+            }
+            TextField(
+                value = password.value,
+                onValueChange = {password.value = it},
+                label = {
+                    Text(text = "Password")
+                }
+            )
+            //TextField Confirm Password
+            var confirmpassword = rememberSaveable {
+                mutableStateOf("")
+            }
+            TextField(
+                value = confirmpassword.value,
+                onValueChange = {confirmpassword.value = it},
+                label = {
+                    Text(text = "Password")
+                }
+                
+            )
+
+
+            //Button 'Register' -> TextField emailed code, Button 'send email again' -> Product Entry
+            Button(onClick = {
+                //Use an if statement
+                //Toast message if they don't match, send to next screen if they do match
+                if (password.value == confirmpassword.value) {
+                    Toast.makeText(context, "Passwords match", Toast.LENGTH_LONG).show()
+                    context.startActivity(Intent(context, ConfirmCode()::class.java))
+                } else {
+                    Toast.makeText(context, "Passwords do not match", Toast.LENGTH_LONG).show()
+                }
+            }) {
+                Text(text = "Register")
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
     Expiration_DateTheme {
-        Greeting2("Android")
+        RegistrationScreen()
     }
 }

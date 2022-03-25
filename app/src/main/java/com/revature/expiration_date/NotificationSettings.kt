@@ -22,7 +22,7 @@ class NotificationSettings : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting5("Notification")
+                    NotificationSettingsScreen()
                 }
             }
         }
@@ -30,14 +30,17 @@ class NotificationSettings : ComponentActivity() {
 }
 
 @Composable
-fun Greeting5(name: String) {
-    Text(text = "Hello $name!")
+fun NotificationSettingsScreen() {
+    //TopAppBar
+    //List of all notifications
+    //Settings to change notifications
+    //   Who gets them (Phone numbers, emails), When (1 day, 3 days, past expiry, etc)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview6() {
     Expiration_DateTheme {
-        Greeting5("Android")
+        NotificationSettingsScreen()
     }
 }

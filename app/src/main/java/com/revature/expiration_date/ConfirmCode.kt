@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
-class Login : ComponentActivity() {
+class ConfirmCode : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,7 +28,7 @@ class Login : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoginScreen()
+                    ConfirmEmailScreen()
                 }
             }
         }
@@ -36,61 +36,42 @@ class Login : ComponentActivity() {
 }
 
 @Composable
-fun LoginScreen() {
+fun ConfirmEmailScreen() {
     val context = LocalContext.current
 
     Column {
         TopAppBar() {
-            Text(text = "Login Screen")
+            Text(text = "Confirm Email Screen")
         }
         Column(
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            //TextField Username
-            val username = rememberSaveable {
+            val confirmationCode = rememberSaveable {
                 mutableStateOf("")
             }
+            var codeIsCorrect = false
             TextField(
-                value = username.value,
-                onValueChange = {username.value = it},
+                value = confirmationCode.value,
+                onValueChange = { confirmationCode.value = it },
                 label = {
-                    Text(text = "Username")
+                    Text(text = "Enter Code that was emailed to you")
                 }
             )
-            //TextField Password
-            val password = rememberSaveable {
-                mutableStateOf("")
-            }
-            TextField(
-                value = password.value,
-                onValueChange = {password.value = it},
-                label = {
-                    Text(text = "Password")
-                }
-            )
-            //Button 'Login' -> Product View
             Button(onClick = {
-                //Use an if statement
-                //Toast message if they don't match, send to next screen if they do match
-                if (password.value == "qwerty" && username.value == "tombom") { //Eventually, this should search an DB for registered users
-                    context.startActivity(Intent(context, ProductView()::class.java))
-                } else {
-                    Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG).show()
+                if (confirmationCode.value.equals("12345")) {//Obviously, this code should be one that was emailed to the user
+                    codeIsCorrect = true//Upon confirming their email, the user should be added to a DB, with their email, username, password, and eventually their data
+                    Toast.makeText(context, "Correct", Toast.LENGTH_LONG).show()
+                    //context.startActivity(Intent(context, ProductEntry()::class.java))
+                }
+                if (codeIsCorrect == true) {
+                    //Send to product Entry
+                    context.startActivity(Intent(context, ProductEntry()::class.java))
                 }
             }) {
-                Text(text = "Login")
+                Text(text = "Submit")
             }
-
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview2() {
-    Expiration_DateTheme {
-        LoginScreen()
     }
 }
