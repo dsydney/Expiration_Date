@@ -42,7 +42,7 @@ fun ProductEntryScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            //TextField Prodect entry
+            //TextField Product entry
             val productName = rememberSaveable{
                 mutableStateOf("")
             }
@@ -53,8 +53,9 @@ fun ProductEntryScreen() {
                     Text(text = "Enter Product Name")
                 }
             )
+            //I will be trying to use a search function with the Product entry field
             //TextField Expiration Date entry (Can we get a calendar to pop up
-            // so we can click on a date?)
+            // so we can click on a date?) That is my plan.
             //Dropdown list Category
             //Dropdown list Location
             //Take a picture of the front
