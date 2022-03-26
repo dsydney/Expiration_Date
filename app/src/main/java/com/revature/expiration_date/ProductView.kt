@@ -3,16 +3,15 @@ package com.revature.expiration_date
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
@@ -42,11 +41,41 @@ fun ProductViewScreen()  {
         Column (
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly
+            verticalArrangement = Arrangement.Top
         ) {
             //Scrollable box (vertical Scroll) with a list
-            // List Item = Row
-            //Picture of item, Name of Item, Days remaining
+            Card(
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.5f)
+                    .background(Color.LightGray)
+                    .verticalScroll(
+                        rememberScrollState()
+                    )
+            ) {
+                // List Item = Row
+                Column() {
+                    //Picture of item, Name of Item, Days remaining
+                    Row() {
+                        Text(text = "Item 1\n\n\n\n\n\n\n")
+                    }
+                    Row() {
+                        Text(text = "Item 2\n\n\n\n\n\n\n")
+                    }
+                    Row() {
+                        Text(text = "Item 3\n\n\n\n\n\n\n")
+                    }
+                    Row() {
+                        Text(text = "Item 4\n\n\n\n\n\n\n")
+                    }
+                    Row() {
+                        Text(text = "Item 5\n\n\n\n\n\n\n")
+                    }
+                    Row() {
+                        Text(text = "Item 6\n\n\n\n\n\n\n")
+                    }
+                }
+            }
             //Button - Delete item
             //Button - Add item -> ProductEntry
             //Nav Drawer
