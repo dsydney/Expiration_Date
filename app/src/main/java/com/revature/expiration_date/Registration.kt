@@ -8,13 +8,18 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
@@ -35,9 +40,11 @@ class Registration : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RegistrationScreen() {
     val context = LocalContext.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column {
         TopAppBar() {
@@ -57,7 +64,10 @@ fun RegistrationScreen() {
                 onValueChange = {email.value = it},
                 label = {
                     Text(text = "Email")
-                }
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(
+                    onDone = {keyboardController?.hide()})
             )
             //TextField Username
             val username = rememberSaveable {
@@ -68,7 +78,10 @@ fun RegistrationScreen() {
                 onValueChange = {username.value = it},
                 label = {
                     Text(text = "Username")
-                }
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(
+                    onDone = {keyboardController?.hide()})
             )
             //TextField Password
             var password = rememberSaveable {
@@ -79,7 +92,10 @@ fun RegistrationScreen() {
                 onValueChange = {password.value = it},
                 label = {
                     Text(text = "Password")
-                }
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(
+                    onDone = {keyboardController?.hide()})
             )
             //TextField Confirm Password
             var confirmpassword = rememberSaveable {
@@ -90,7 +106,10 @@ fun RegistrationScreen() {
                 onValueChange = {confirmpassword.value = it},
                 label = {
                     Text(text = "Password")
-                }
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(
+                    onDone = {keyboardController?.hide()})
                 
             )
 

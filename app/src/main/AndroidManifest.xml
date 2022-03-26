@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Expiration_Date">
         <activity
+            android:name=".BottomNavBar"
+            android:exported="false"
+            android:label="@string/title_activity_bottom_nav_bar"
+            android:theme="@style/Theme.Expiration_Date" />
+        <activity
             android:name=".ConfirmCode"
             android:exported="false"
             android:label="@string/title_activity_confirm_code"
