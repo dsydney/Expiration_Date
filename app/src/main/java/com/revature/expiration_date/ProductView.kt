@@ -1,6 +1,8 @@
 package com.revature.expiration_date
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
@@ -36,6 +39,8 @@ class ProductView : ComponentActivity() {
 
 @Composable
 fun ProductViewScreen()  {
+    val context = LocalContext.current
+
     Column {
         //TopAppBar
         TopAppBar() {
@@ -86,16 +91,45 @@ fun ProductViewScreen()  {
                         Row() {
                             Text(text = "Item 6\n\n\n\n\n\n\n")
                         }
-                    }
+                    } // End column in box
+                } // End box - Product view box
+            } // End card - product view card
+
+            Spacer(Modifier.height(60.dp))
+
+            //Button - Delete item
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(30.dp),
+                horizontalArrangement = Arrangement.End
+                    ) {
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "Delete Item")
                 }
             }
-            //Button - Delete item
+
+            Spacer(Modifier.height(60.dp))
+
             //Button - Add item -> ProductEntry
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(30.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Button(onClick = {
+                    Toast.makeText(context, "Go to Add Item", Toast.LENGTH_LONG).show()
+                    context.startActivity(Intent(context, ProductEntry()::class.java))
+                }) {
+                    Text(text = "Add Item")
+                }
+            }
             //Nav Drawer
             //Different Locations, changes the Scrollable Box
-            //Refrigeratoe, Freezer, Pantry, All, Expiring Tomorrow, and any other customizable locations
-        }
-    }
+            //Refrigerator, Freezer, Pantry, All, Expiring Tomorrow, and any other customizable locations
+        } // End column - screen
+    } // End column - TopAppBar and screen
 }
 
 @Preview(showBackground = true)
