@@ -286,6 +286,7 @@ fun BottomBar() {
 
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview4() {
