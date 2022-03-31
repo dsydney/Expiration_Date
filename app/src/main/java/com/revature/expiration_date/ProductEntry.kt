@@ -117,7 +117,7 @@ fun ProductEntryScreen() {
                     }
                 }
             }
-/*
+
             //Expiration Date
             val year: Int
             val month: Int
@@ -136,18 +136,18 @@ fun ProductEntryScreen() {
                 date.value = "$dayOfMonth/$month/$year"
             }, year, month, day)
 
-            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
+//            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
                 Spacer(modifier = Modifier.size(16.dp))
                 Button(onClick = {
                     datePickerDialog.show()
                 } )  {
                 Text(text = "Enter Expiration Date")
-            },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(
-                    onDone = {keyboardController?.hide()})
-            )
-*/
+            }
+//                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+//                keyboardActions = KeyboardActions(
+//                    onDone = {keyboardController?.hide()})
+
+
             //Dropdown list Category
 
             OutlinedTextField(
