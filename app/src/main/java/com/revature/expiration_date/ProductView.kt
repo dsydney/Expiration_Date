@@ -3,9 +3,7 @@ package com.revature.expiration_date
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -20,6 +18,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -80,7 +79,7 @@ fun ProductViewScreen() {
 @Composable
 fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
     TopAppBar(
-        title = { Text(text = "Navigation Drawer") },
+        title = { Text(text = "Product View") },
 
         navigationIcon = {
             IconButton(onClick = {
@@ -179,6 +178,7 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
 @Composable
 fun DrawerItem(item: NavigationItem, selected: Boolean, onItemClick: (NavigationItem) -> Unit) {
     val background = if(selected) R.color.purple_500 else android.R.color.transparent
+    val textColor = if(selected) R.color.white else R.color.black
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -203,48 +203,412 @@ fun DrawerItem(item: NavigationItem, selected: Boolean, onItemClick: (Navigation
         Text(
             text = item.title,
             fontSize = 16.sp,
-            color = Color.Black
+            color = colorResource(id = textColor) //Color.Black
         )
     }
 }
 
 @Composable
 fun RefrigeratorScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
-        Text(text = "Refrigerator")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.primary)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+        }
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+        }
     }
 }
 
 @Composable
 fun FreezerScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
-        Text(text = "Freezer")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.primary)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Freezer Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+        }
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+        }
     }
 }
 
 @Composable
 fun CounterScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
-        Text(text = "Counter")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.primary)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Counter Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+        }
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+        }
     }
 }
 
 @Composable
 fun PantryScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
-        Text(text = "Pantry")
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.primary)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "Pantry Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+        }
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 1")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 2")
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                Text(text = "Item 3")
+            }
+        }
     }
 }
 
