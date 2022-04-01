@@ -6,3 +6,5 @@ data class ExpiredItem(
     @SerializedName("name") val name: String,
     @SerializedName("days_expired") val days_expired: String,
 )
+
+data class ExpiredItems(val items: List<ExpiredItem>)
