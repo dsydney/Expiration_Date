@@ -10,9 +10,11 @@ import android.widget.DatePicker
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -27,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -79,45 +82,56 @@ fun ProductEntryScreen() {
     }else{
         Icons.Filled.KeyboardArrowDown
     }
-    Scaffold(topBar = {
+    Column {
         TopAppBar(title = { Text("Product Entry") })
-    },
-    content = {
+
+
         Column {
 
-            OutlinedTextField(
-                value = productName,
-                onValueChange = { productName = it },
-                modifier = Modifier
+            Card(
+                Modifier
                     .fillMaxWidth()
-                    .onGloballyPositioned { coordinates ->
-                        textFiledSize = coordinates.size.toSize()
-                    },
-                label = { Text(text = "Enter Product Name") },
-                trailingIcon = {
-                    Icon(icon, "", Modifier.clickable { expanded = !expanded })
-                },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(
-                    onDone = { keyboardController?.hide() })
+                    .height(100.dp)
+                    .padding(10.dp),
+                elevation = 12.dp,
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(3.dp, Color.Black),
+                backgroundColor = Color.LightGray
             )
+            {
+                OutlinedTextField(
+                    value = productName,
+                    onValueChange = { productName = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .onGloballyPositioned { coordinates ->
+                            textFiledSize = coordinates.size.toSize()
+                        },
+                    label = { Text(text = "Enter Product Name") },
+                    trailingIcon = {
+                        Icon(icon, "", Modifier.clickable { expanded = !expanded })
+                    },
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(
+                        onDone = { keyboardController?.hide() })
+                )
 
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier
-                    .width(with(LocalDensity.current) { textFiledSize.width.toDp() })
-            ) {
-                productList.forEach { label ->
-                    DropdownMenuItem(onClick = {
-                        productName = label
-                        expanded = false
-                    }) {
-                        Text(text = label)
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                    modifier = Modifier
+                        .width(with(LocalDensity.current) { textFiledSize.width.toDp() })
+                ) {
+                    productList.forEach { label ->
+                        DropdownMenuItem(onClick = {
+                            productName = label
+                            expanded = false
+                        }) {
+                            Text(text = label)
+                        }
                     }
                 }
             }
-
             //Expiration Date
             val year: Int
             val month: Int
@@ -129,18 +143,19 @@ fun ProductEntryScreen() {
             day = calendar.get(Calendar.DAY_OF_MONTH)
             calendar.time = Date()
 
-        val date = remember{mutableStateOf("")}
-        val datePickerDialog = DatePickerDialog(
-            context,
-            { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                date.value = "$dayOfMonth/$month/$year"
-            }, year, month, day)
+            val date = remember { mutableStateOf("") }
+            val datePickerDialog = DatePickerDialog(
+                context,
+                { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                    date.value = "$dayOfMonth/$month/$year"
+                }, year, month, day
+            )
 
 //            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
-                Spacer(modifier = Modifier.size(16.dp))
-                Button(onClick = {
-                    datePickerDialog.show()
-                } )  {
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(onClick = {
+                datePickerDialog.show()
+            }) {
                 Text(text = "Enter Expiration Date")
             }
 //                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
@@ -251,9 +266,9 @@ fun ProductEntryScreen() {
 
         }
 
-    },
-        bottomBar = {BottomBar()}
-        )
+
+//        BottomBar()
+    }
 }
 
 @Composable

@@ -33,6 +33,7 @@ fun SendMessageScreen() {
     val context = LocalContext.current
 
     // TEMP - replace with actual lists of items as formatted Strings
+    // CONSUME API
     val itemsExpired = "..."
     val itemsToday = "..."
     val itemsSoon = "..."
