@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,15 +68,39 @@ fun SplashScreen(navController: NavController) {
         delay(5000L)
         navController.navigate("main_screen")
     }
-    Column(
+    Box(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        //horizontalAlignment = Alignment.CenterHorizontally,
+        //verticalArrangement = Arrangement.Center
     ) {
-        Card(
-            backgroundColor = MaterialTheme.colors.primary
+        
+        //Background Image
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.moroccan_flower),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize()
+            )
+
+        }
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(modifier = Modifier.padding(15.dp), text = "Expiration Date", color = MaterialTheme.colors.onPrimary, fontSize = 30.sp)
+
+
+            Card(
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
+                Text(
+                    modifier = Modifier.padding(15.dp),
+                    text = "Expiration Date",
+                    color = MaterialTheme.colors.onPrimary,
+                    fontSize = 30.sp
+                )
+            }
         }
     }
 }
