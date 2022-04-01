@@ -1,8 +1,10 @@
 package com.revature.expiration_date
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -29,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
 class BottomNavBar : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,6 +52,7 @@ class BottomNavBar : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomNavBar(navController: NavHostController, startScreen: String) {
@@ -102,6 +106,7 @@ fun BottomNavBar(navController: NavHostController, startScreen: String) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun Navigation(
 
