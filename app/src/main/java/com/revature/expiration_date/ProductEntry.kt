@@ -74,7 +74,7 @@ fun ProductEntryScreen() {
     val locationList = listOf("fridge", "freezer", "pantry", "counter")
     val location = rememberSaveable{mutableStateOf("")}
     var productName by rememberSaveable {mutableStateOf("")}
-    var category = rememberSaveable {mutableStateOf("")}
+    val category = rememberSaveable {mutableStateOf("")}
     var textFiledSize by remember { mutableStateOf(Size.Zero)}
 
     var icon = if (expanded) {
