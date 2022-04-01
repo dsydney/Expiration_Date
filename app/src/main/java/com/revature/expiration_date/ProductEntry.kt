@@ -61,7 +61,7 @@ class ProductEntry : ComponentActivity() {
 }
 
 @Composable
-fun dropDownMenu(list: List<String>): String {
+fun dropDownMenu(list: List<String>, defaultText: String): String {
 
     var expanded by remember { mutableStateOf(false) }
     //val list = listOf("a", "b", "c", "d")
@@ -93,7 +93,7 @@ fun dropDownMenu(list: List<String>): String {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Select Item")
+                Text(text = defaultText)
 
                 Spacer(modifier = Modifier.width(10.dp))
 
@@ -204,7 +204,7 @@ fun ProductEntryScreen() {
     var expanded by remember {mutableStateOf (false)}
     val productList = listOf("Eggs", "Milk", "Lettuce", "Pork chops")
     val categoryList = listOf("Dairy", "Vegetables", "Meat", "Fruits")
-    val locationList = listOf("fridge", "freezer", "pantry", "counter")
+    val locationList = listOf("Fridge", "Freezer", "Pantry", "Counter")
     val location = rememberSaveable{mutableStateOf("")}
     var productName by rememberSaveable {mutableStateOf("")}
     var category = rememberSaveable {mutableStateOf("")}
@@ -229,10 +229,10 @@ fun ProductEntryScreen() {
             // photo - front
             // photo - back
 
-            dropDownMenu(list = productList)
+            dropDownMenu(list = productList, "Select Item")
             datepicker()
-            dropDownMenu(list = categoryList)
-            dropDownMenu(list = locationList)
+            dropDownMenu(list = categoryList, "Select Category")
+            dropDownMenu(list = locationList, "Select Location")
             photos()
 
 /*
