@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -62,7 +64,17 @@ fun SplashScreen(navController: NavController) {
         delay(5000L)
         navController.navigate("main_screen")
     }
-    Text(text = "Splash")
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Card(
+            backgroundColor = MaterialTheme.colors.primary
+        ) {
+            Text(modifier = Modifier.padding(15.dp), text = "Expiration Date", color = MaterialTheme.colors.onPrimary, fontSize = 30.sp)
+        }
+    }
 }
 
 @Composable
@@ -81,7 +93,9 @@ fun Main() {
             Text(text = "Expiration Date")
         }
         Column(
-            Modifier.fillMaxWidth().fillMaxHeight(0.5f),
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.5f),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
