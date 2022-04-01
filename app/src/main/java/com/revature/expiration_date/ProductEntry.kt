@@ -10,9 +10,7 @@ import android.widget.DatePicker
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -62,6 +60,141 @@ class ProductEntry : ComponentActivity() {
     }
 }
 
+@Composable
+fun dropDownMenu(list: List<String>): String {
+
+    var expanded by remember { mutableStateOf(false) }
+    //val list = listOf("a", "b", "c", "d")
+    var selectedItem by remember { mutableStateOf("") }
+    var textFilledSize by remember { mutableStateOf(Size.Zero) }
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Column (
+        modifier = Modifier
+            .padding(20.dp)
+    ) {
+        Box(
+            //value = selectedItem,
+            //onValueChange = { selectedItem = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    textFilledSize = coordinates.size.toSize()
+                }
+                .border(border = BorderStroke(2.dp, Color.Black))
+                .padding(3.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "Select Item")
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Text(text = selectedItem)
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Icon(
+                    icon, "",
+                    Modifier
+                        .clickable { expanded = !expanded }
+                        .background(color = MaterialTheme.colors.primary)
+                    )
+            }
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier
+                .width(with(LocalDensity.current){textFilledSize.width.toDp()})
+        ) {
+            list.forEach { label ->
+                DropdownMenuItem(onClick = {
+                    selectedItem = label
+                    expanded = false
+                }) {
+                    Text(text = label)
+                }
+            }
+        }
+    }
+
+    return selectedItem
+}
+
+@Composable
+fun photos() {
+    //Take a picture of the front
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceAround
+    ) {
+
+        Button(onClick = {}) {
+            Image(
+                painterResource(id = R.drawable.camera_icon),
+                contentDescription = "Camera icon",
+                modifier = Modifier.size(20.dp)
+            )
+
+            Text(text = "Add a photo", Modifier.padding(start = 10.dp))
+        }
+
+        Button(onClick = {}) {
+            Image(
+                painterResource(id = R.drawable.image_icon),
+                contentDescription = "Image icon",
+                modifier = Modifier.size(20.dp)
+            )
+
+            Text(text = "Add an image", Modifier.padding(start = 10.dp))
+        }
+
+
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.N)
+@Composable
+fun datepicker() {
+    //Expiration Date
+    val context = LocalContext.current
+    val year: Int
+    val month: Int
+    val day: Int
+
+    val calendar = Calendar.getInstance()
+    year = calendar.get(Calendar.YEAR)
+    month = calendar.get(Calendar.MONTH)
+    day = calendar.get(Calendar.DAY_OF_MONTH)
+    calendar.time = Date()
+
+    val date = remember { mutableStateOf("") }
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+            date.value = "$dayOfMonth/$month/$year"
+        }, year, month, day
+    )
+
+//            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
+    Spacer(modifier = Modifier.size(16.dp))
+    Button(onClick = {
+        datePickerDialog.show()
+    }) {
+        Text(text = "Enter Expiration Date")
+    }
+}
+
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -88,6 +221,21 @@ fun ProductEntryScreen() {
 
         Column {
 
+            //Contents of Column:
+            // product dropdown menu
+            // expiration date date picker
+            // category dropdown menu
+            // location dropdown menu
+            // photo - front
+            // photo - back
+
+            dropDownMenu(list = productList)
+            datepicker()
+            dropDownMenu(list = categoryList)
+            dropDownMenu(list = locationList)
+            photos()
+
+/*
             Card(
                 Modifier
                     .fillMaxWidth()
@@ -264,6 +412,8 @@ fun ProductEntryScreen() {
 
             }
 
+
+ */
         }
 
 
