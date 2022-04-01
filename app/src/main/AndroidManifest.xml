@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.revature.expiration_date">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,11 +20,6 @@
             android:name=".ConfirmCode"
             android:exported="false"
             android:label="@string/title_activity_confirm_code"
-            android:theme="@style/Theme.Expiration_Date" />
-        <activity
-            android:name=".NotificationSettings"
-            android:exported="false"
-            android:label="@string/title_activity_notification_settings"
             android:theme="@style/Theme.Expiration_Date" />
         <activity
             android:name=".ProductView"

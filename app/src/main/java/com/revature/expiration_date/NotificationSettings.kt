@@ -18,6 +18,7 @@ Notifications can trigger for 3 days prior, 1 day prior, day of expiration, and/
  */
 @Composable
 fun NotificationSettingsScreen() {
+    // CHANGE TO API CALL
     var selectThreeDays: Boolean by rememberSaveable { mutableStateOf(false) }
     var selectOneDay: Boolean by rememberSaveable { mutableStateOf(false) }
     var selectDayOf: Boolean by rememberSaveable { mutableStateOf(true) }
