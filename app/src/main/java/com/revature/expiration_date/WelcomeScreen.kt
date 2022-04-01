@@ -5,14 +5,26 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +36,70 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Main()
+                    Navigation()
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun Navigation() {
+
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = "splash_screen"
+    ) {
+        composable("splash_screen") {
+            SplashScreen(navController = navController)
+        }
+        composable("main_screen") {
+            Main()
+        }
+
+    }
+
+}
+
+@Composable
+fun SplashScreen(navController: NavController) {
+    LaunchedEffect(key1 = true) {
+        delay(5000L)
+        navController.navigate("main_screen")
+    }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        //horizontalAlignment = Alignment.CenterHorizontally,
+        //verticalArrangement = Arrangement.Center
+    ) {
+        
+        //Background Image
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.moroccan_flower),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize()
+            )
+
+        }
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+
+            Card(
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
+                Text(
+                    modifier = Modifier.padding(15.dp),
+                    text = "Expiration Date",
+                    color = MaterialTheme.colors.onPrimary,
+                    fontSize = 30.sp
+                )
             }
         }
     }
@@ -47,7 +121,9 @@ fun Main() {
             Text(text = "Expiration Date")
         }
         Column(
-            Modifier.fillMaxWidth().fillMaxHeight(0.5f),
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.5f),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {

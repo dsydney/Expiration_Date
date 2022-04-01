@@ -1,15 +1,17 @@
 package com.revature.expiration_date
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -20,11 +22,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
 class Login : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -41,6 +47,7 @@ class Login : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun LoginScreen() {
@@ -54,7 +61,9 @@ fun LoginScreen() {
             Text(text = "Login Screen")
         }
         Column(
-            Modifier.fillMaxSize(),
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -83,6 +92,7 @@ fun LoginScreen() {
                     Text(text = "Password")
                 },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                visualTransformation = PasswordVisualTransformation(), // Makes the password appear as asterisks
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
             )
@@ -102,6 +112,8 @@ fun LoginScreen() {
             }) {
                 Text(text = "Login")
             }
+            
+            Spacer(modifier = Modifier.height(200.dp))
         }
     }
     if (clicked.value) {
@@ -109,6 +121,7 @@ fun LoginScreen() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
