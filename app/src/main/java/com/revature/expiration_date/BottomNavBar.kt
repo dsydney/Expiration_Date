@@ -23,17 +23,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodel.ProductsViewModel
 
 class BottomNavBar : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        val productsViewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
+
         setContent {
             Expiration_DateTheme {
                 // A surface container using the 'background' color from the theme
@@ -45,7 +50,11 @@ class BottomNavBar : ComponentActivity() {
 
                     val startScreen = "add"
 
-                    BottomNavBar(navController = navController, startScreen = startScreen)
+                    BottomNavBar(
+                        navController = navController,
+                        startScreen = startScreen,
+//                        viewModel = productsViewModel
+                    )
                 }
             }
         }
@@ -55,7 +64,11 @@ class BottomNavBar : ComponentActivity() {
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun BottomNavBar(navController: NavHostController, startScreen: String) {
+fun BottomNavBar(
+    navController: NavHostController,
+    startScreen: String,
+//    viewModel: ProductsViewModel
+) {
     Scaffold(
 
         bottomBar = {
@@ -101,7 +114,11 @@ fun BottomNavBar(navController: NavHostController, startScreen: String) {
 
     ) {
 
-        Navigation(navController = navController, startScreen)
+        Navigation(
+            navController = navController,
+            startScreen = startScreen,
+//            viewModel = viewModel
+        )
 
     }
 }
@@ -111,7 +128,8 @@ fun BottomNavBar(navController: NavHostController, startScreen: String) {
 fun Navigation(
 
     navController: NavHostController,
-    startScreen: String
+    startScreen: String,
+//    viewModel: ProductsViewModel
 
 ) {
 
@@ -122,19 +140,19 @@ fun Navigation(
         composable("add") {
 
             //This will be our home screen
-            ProductEntryScreen()
+            ProductEntryScreen( /* viewModel */ )
 
         }
         composable("view") {
 
             //This will be our chat screen
-            ProductViewScreen()
+            ProductViewScreen( /* viewModel */ )
 
         }
         composable("settings") {
 
             //This will be our settings screen
-            NotificationSettingsScreen()
+            NotificationSettingsScreen( /* viewModel */ )
 
         }
 
