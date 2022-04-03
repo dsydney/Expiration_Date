@@ -134,7 +134,7 @@ class AddItemViewModel: ViewModel() {
 
             try {
 
-                val authService= RetrofitHelper.getAuthService()
+                val authService= RetrofitHelper.getAPIService()
 
                 val responseService=authService.addProduct(Product(item = item,
                     expiration=expiration, category=category, location=location))
