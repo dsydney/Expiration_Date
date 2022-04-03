@@ -17,4 +17,7 @@ interface APIService {
 
     @POST("expired")
     suspend fun getExpiredProducts(): Response<ExpiredItems>
+
+    @POST("create_item")
+    suspend fun addProduct(@Body product: Product): Response<ItemPosted>
 }

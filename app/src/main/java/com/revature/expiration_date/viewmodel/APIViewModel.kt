@@ -122,3 +122,50 @@ class ExpiredViewModel: ViewModel() {
         }
     }
 }
+
+class AddItemViewModel: ViewModel() {
+
+    private val addItemRequestLiveData=MutableLiveData<Boolean>()
+
+    fun product(item:String, expiration:String, category:String, location:String)
+    {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            try {
+
+                val authService= RetrofitHelper.getAuthService()
+
+                val responseService=authService.addProduct(Product(item = item,
+                    expiration=expiration, category=category, location=location))
+
+                if (responseService.isSuccessful)
+                {
+                    responseService.body()?.let { itemPosted ->
+
+                        Log.d("Logging", "Response sent $itemPosted")
+
+
+                    }
+                }
+                else
+                {
+                    responseService.errorBody()?.let {error ->
+
+                        Log.d("Logging", "Response sent $error")
+
+                        error.close()
+                    }
+                }
+
+                addItemRequestLiveData.postValue(responseService.isSuccessful)
+            }
+            catch(e:Exception)
+            {
+                Log.d("Network Exception Log", "Exception in Networking $e")
+            }
+        }
+    }
+
+
+}
