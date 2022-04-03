@@ -12,12 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodel.ProductsViewModel
 
 /*
 Notifications can trigger for 3 days prior, 1 day prior, day of expiration, and/or expired.
  */
 @Composable
-fun NotificationSettingsScreen() {
+fun NotificationSettingsScreen( /* viewModel: ProductsViewModel */ ) {
     // CHANGE TO API CALL
     var selectThreeDays: Boolean by rememberSaveable { mutableStateOf(false) }
     var selectOneDay: Boolean by rememberSaveable { mutableStateOf(false) }
@@ -124,10 +125,10 @@ fun NotificationSettingsScreen() {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview6() {
-    Expiration_DateTheme {
-        NotificationSettingsScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewNotificationSettingsScreen() {
+//    Expiration_DateTheme {
+//        NotificationSettingsScreen()
+//    }
+//}

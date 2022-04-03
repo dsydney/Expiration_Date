@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.revature.expiration_date.network.Items
 import com.revature.expiration_date.network.Login
 import com.revature.expiration_date.network.Product
 import com.revature.expiration_date.network.RequestProduct
@@ -38,10 +39,16 @@ class LoginViewModel: ViewModel() {
             }
         }
     }
+
 }
 
 class ProductsViewModel: ViewModel() {
-    private val loginRequestLiveData = MutableLiveData<Boolean>()
+    private val productsRequestLiveData = MutableLiveData<Boolean>()
+    private val removeRequestLiveData = MutableLiveData<Boolean>()
+//    private val expiredRequestLiveData = MutableLiveData<Boolean>()
+    private val addItemRequestLiveData = MutableLiveData<Boolean>()
+
+    private lateinit var items: Items
 
     fun listOfAllProducts(location: String, choices: List<String>) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -51,25 +58,21 @@ class ProductsViewModel: ViewModel() {
 
                 if (responseService.isSuccessful) {
                     responseService.body()?.let {
+                        items = it
                         Log.d("All Products","API Call Successful")
-                        TODO("Take incoming items and do something")
                     }
                 } else {
                     responseService.errorBody()?.let {
-                        Log.d("LogIn","Response Error $it")
+                        Log.d("All Products","Response Error $it")
                         it.close()
                     }
                 }
-                loginRequestLiveData.postValue(responseService.isSuccessful)
+                productsRequestLiveData.postValue(responseService.isSuccessful)
             } catch(ex: Exception) {
-                Log.d("Login", "Exception in Network: $ex")
+                Log.d("All Products", "Exception in Network: $ex")
             }
         }
     }
-}
-
-class RemoveViewModel: ViewModel() {
-    private val loginRequestLiveData = MutableLiveData<Boolean>()
 
     fun removeProduct(item: Product) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -79,93 +82,71 @@ class RemoveViewModel: ViewModel() {
 
                 if (responseService.isSuccessful) {
                     responseService.body()?.let {
-                        Log.d("All Products","API Call Successful")
+                        Log.d("Remove Product","API Call Successful")
                     }
                 } else {
                     responseService.errorBody()?.let {
-                        Log.d("LogIn","Response Error $it")
+                        Log.d("Remove Product","Response Error $it")
                         it.close()
                     }
                 }
-                loginRequestLiveData.postValue(responseService.isSuccessful)
+                removeRequestLiveData.postValue(responseService.isSuccessful)
             } catch(ex: Exception) {
-                Log.d("Login", "Exception in Network: $ex")
+                Log.d("Remove Product", "Exception in Network: $ex")
             }
         }
     }
-}
 
-class ExpiredViewModel: ViewModel() {
-    private val loginRequestLiveData = MutableLiveData<Boolean>()
+//    fun getExpiredProducts() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            try {
+//                val authService = RetrofitHelper.getAPIService()
+//                val responseService = authService.getExpiredProducts()
+//
+//                if (responseService.isSuccessful) {
+//                    responseService.body()?.let {
+//                        Log.d("Expired Products","API Call Successful")
+//                        TODO("do something with incoming expired items")
+//                    }
+//                } else {
+//                    responseService.errorBody()?.let {
+//                        Log.d("Expired Products","Response Error $it")
+//                        it.close()
+//                    }
+//                }
+//                expiredRequestLiveData.postValue(responseService.isSuccessful)
+//            } catch(ex: Exception) {
+//                Log.d("Expired Products", "Exception in Network: $ex")
+//            }
+//        }
+//    }
 
-    fun getExpiredProducts() {
+    fun product(item: String, expiration: String, category: String, location: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val authService = RetrofitHelper.getAPIService()
-                val responseService = authService.getExpiredProducts()
+                val responseService = authService.addProduct(Product(
+                    item = item,
+                    expiration = expiration,
+                    category = category,
+                    location = location
+                ))
 
                 if (responseService.isSuccessful) {
-                    responseService.body()?.let {
-                        Log.d("All Products","API Call Successful")
-                        TODO("do something with incoming expired items")
+                    responseService.body()?.let { itemPosted ->
+                        Log.d("Add Product", "Response sent $itemPosted")
                     }
                 } else {
-                    responseService.errorBody()?.let {
-                        Log.d("LogIn","Response Error $it")
-                        it.close()
-                    }
-                }
-                loginRequestLiveData.postValue(responseService.isSuccessful)
-            } catch(ex: Exception) {
-                Log.d("Login", "Exception in Network: $ex")
-            }
-        }
-    }
-}
-
-class AddItemViewModel: ViewModel() {
-
-    private val addItemRequestLiveData=MutableLiveData<Boolean>()
-
-    fun product(item:String, expiration:String, category:String, location:String)
-    {
-
-        viewModelScope.launch(Dispatchers.IO) {
-
-            try {
-
-                val authService= RetrofitHelper.getAPIService()
-
-                val responseService=authService.addProduct(Product(item = item,
-                    expiration=expiration, category=category, location=location))
-
-                if (responseService.isSuccessful)
-                {
-                    responseService.body()?.let { itemPosted ->
-
-                        Log.d("Logging", "Response sent $itemPosted")
-
-
-                    }
-                }
-                else
-                {
                     responseService.errorBody()?.let {error ->
-
-                        Log.d("Logging", "Response sent $error")
+                        Log.d("Add Product", "Response sent $error")
 
                         error.close()
                     }
                 }
-
                 addItemRequestLiveData.postValue(responseService.isSuccessful)
-            }
-            catch(e:Exception)
-            {
-                Log.d("Network Exception Log", "Exception in Networking $e")
+            } catch(ex: Exception) {
+                Log.d("Add Product", "Exception in Networking $ex")
             }
         }
     }
-
-
 }

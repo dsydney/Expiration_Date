@@ -19,16 +19,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodel.LoginViewModel
+import com.revature.expiration_date.viewmodel.ProductsViewModel
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
         setContent {
             Expiration_DateTheme {
                 // A surface container using the 'background' color from the theme

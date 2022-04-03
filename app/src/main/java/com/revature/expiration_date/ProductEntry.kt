@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.core.content.ContextCompat.startActivity
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodel.ProductsViewModel
 import java.util.*
 
 class ProductEntry : ComponentActivity() {
@@ -218,7 +219,7 @@ fun datepicker() {
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ProductEntryScreen() {
+fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var expanded by remember {mutableStateOf (false)}
