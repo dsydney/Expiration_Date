@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -94,7 +95,23 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = defaultText)
+                TextField(value = selectedItem,
+                    onValueChange = {selectedItem = it},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .onGloballyPositioned { coordinates ->
+                            textFilledSize = coordinates.size.toSize()
+                        },
+                    label = {Text(text = defaultText)},
+                    trailingIcon = {
+                        Icon(icon, "", Modifier
+                            .clickable {expanded = !expanded}
+                            .background(color = MaterialTheme.colors.primary))
+                    }
+                )
+
+
+/*                Text(text = defaultText)
 
                 Spacer(modifier = Modifier.width(10.dp))
 
@@ -107,7 +124,7 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
                     Modifier
                         .clickable { expanded = !expanded }
                         .background(color = MaterialTheme.colors.primary)
-                    )
+                    )*/
             }
         }
 
@@ -183,17 +200,19 @@ fun datepicker() {
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            date.value = "$dayOfMonth/$month/$year"
+            date.value = "$month/$dayOfMonth/$year"
         }, year, month, day
     )
 
-//            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
-    Spacer(modifier = Modifier.size(16.dp))
+
     Button(onClick = {
         datePickerDialog.show()
     }) {
         Text(text = "Enter Expiration Date")
     }
+    Spacer(modifier = Modifier.size(16.dp))
+
+    Text(text = "Selected Date: ${date.value}", fontSize = 15.sp, textAlign = TextAlign.Center)
 }
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -231,190 +250,16 @@ fun ProductEntryScreen() {
             // photo - back
 
             dropDownMenu(list = productList, "Select Item")
+            Spacer(modifier = Modifier.size(16.dp))
             datepicker()
+            Spacer(modifier = Modifier.size(16.dp))
             dropDownMenu(list = categoryList, "Select Category")
+            Spacer(modifier = Modifier.size(16.dp))
             dropDownMenu(list = locationList, "Select Location")
+            Spacer(modifier = Modifier.size(40.dp))
             photos()
 
-/*
-            Card(
-                Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .padding(10.dp),
-                elevation = 12.dp,
-                shape = RoundedCornerShape(10.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                backgroundColor = Color.LightGray
-            )
-            {
-                OutlinedTextField(
-                    value = productName,
-                    onValueChange = { productName = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .onGloballyPositioned { coordinates ->
-                            textFiledSize = coordinates.size.toSize()
-                        },
-                    label = { Text(text = "Enter Product Name") },
-                    trailingIcon = {
-                        Icon(icon, "", Modifier.clickable { expanded = !expanded })
-                    },
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                    keyboardActions = KeyboardActions(
-                        onDone = { keyboardController?.hide() })
-                )
 
-                DropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false },
-                    modifier = Modifier
-                        .width(with(LocalDensity.current) { textFiledSize.width.toDp() })
-                ) {
-                    productList.forEach { label ->
-                        DropdownMenuItem(onClick = {
-                            productName = label
-                            expanded = false
-                        }) {
-                            Text(text = label)
-                        }
-                    }
-                }
-            }
-            //Expiration Date
-            val year: Int
-            val month: Int
-            val day: Int
-
-            val calendar = Calendar.getInstance()
-            year = calendar.get(Calendar.YEAR)
-            month = calendar.get(Calendar.MONTH)
-            day = calendar.get(Calendar.DAY_OF_MONTH)
-            calendar.time = Date()
-
-            val date = remember { mutableStateOf("") }
-            val datePickerDialog = DatePickerDialog(
-                context,
-                { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                    date.value = "$dayOfMonth/$month/$year"
-                }, year, month, day
-            )
-
-//            OutlinedTextField(Text(text = "Selected Date: ${date.value}")
-            Spacer(modifier = Modifier.size(16.dp))
-            Button(onClick = {
-                datePickerDialog.show()
-            }) {
-                Text(text = "Enter Expiration Date")
-            }
-//                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-//                keyboardActions = KeyboardActions(
-//                    onDone = {keyboardController?.hide()})
-
-
-            //Dropdown list Category
-
-            OutlinedTextField(
-                value = category.value,
-                onValueChange = { category.value = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .onGloballyPositioned { coordinates ->
-                        textFiledSize = coordinates.size.toSize()
-                    },
-                label = { Text(text = "Enter Category") },
-                trailingIcon = {
-                    Icon(icon, "", Modifier.clickable { expanded = !expanded })
-                },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(
-                    onDone = { keyboardController?.hide() })
-            )
-
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier
-                    .width(with(LocalDensity.current) { textFiledSize.width.toDp() })
-            ) {
-                categoryList.forEach { label ->
-                    DropdownMenuItem(onClick = {
-                        category.value = label
-                        expanded = false
-                    }) {
-                        Text(text = label)
-                    }
-                }
-            }
-
-            //Dropdown list Location
-
-            OutlinedTextField(
-                value = location.value,
-                onValueChange = { location.value = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .onGloballyPositioned { coordinates ->
-                        textFiledSize = coordinates.size.toSize()
-                    },
-                label = { Text(text = "Enter Location") },
-                trailingIcon = {
-                    Icon(icon, "", Modifier.clickable { expanded = !expanded })
-                },
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(
-                    onDone = { keyboardController?.hide() })
-            )
-
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier
-                    .width(with(LocalDensity.current) { textFiledSize.width.toDp() })
-            ) {
-                locationList.forEach { label ->
-                    DropdownMenuItem(onClick = {
-                        location.value = label
-                        expanded = false
-                    }) {
-                        Text(text = label)
-                    }
-                }
-            }
-
-
-            //Take a picture of the front
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-
-                Button(onClick = {}) {
-                    Image(
-                        painterResource(id = R.drawable.camera_icon),
-                        contentDescription = "Camera icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-
-                    Text(text = "Add a photo", Modifier.padding(start = 10.dp))
-                }
-
-                Button(onClick = {}) {
-                    Image(
-                        painterResource(id = R.drawable.image_icon),
-                        contentDescription = "Image icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-
-                    Text(text = "Add an image", Modifier.padding(start = 10.dp))
-                }
-
-
-            }
-
-
- */
         }
 
 
