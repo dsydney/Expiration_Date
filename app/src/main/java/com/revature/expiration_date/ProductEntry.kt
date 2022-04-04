@@ -184,7 +184,7 @@ fun photos() {
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable
-fun datepicker() {
+fun datepicker(): String {
     //Expiration Date
     val context = LocalContext.current
     val year: Int
@@ -213,6 +213,8 @@ fun datepicker() {
     Spacer(modifier = Modifier.size(16.dp))
 
     Text(text = "Selected Date: ${date.value}", fontSize = 15.sp, textAlign = TextAlign.Center)
+
+    return date.value
 
 }
 
@@ -252,13 +254,21 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             // photo - back
 
             dropDownMenu(list = productList, "Select Item")
+
             Spacer(modifier = Modifier.size(16.dp))
+
             datepicker()
+
             Spacer(modifier = Modifier.size(16.dp))
+
             dropDownMenu(list = categoryList, "Select Category")
+
             Spacer(modifier = Modifier.size(16.dp))
+
             dropDownMenu(list = locationList, "Select Location")
+
             Spacer(modifier = Modifier.size(40.dp))
+
             photos()
 
 

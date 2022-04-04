@@ -1,4 +1,4 @@
-package com.revature.expiration_date
+package com.revature.expiration_date.productview
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.revature.expiration_date.R
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 import com.revature.expiration_date.viewmodel.ProductsViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -222,90 +223,15 @@ fun RefrigeratorScreen() {
             Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
         }
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
+
+            testRowItem()
+            testRowItem()
+            testRowItem()
+            testRowItem()
+            testRowItem()
+            testRowItem()
+            Product(name = "Eggs", expirationDate = "4/25/22")
+            
         }
     }
 }

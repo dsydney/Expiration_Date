@@ -7,4 +7,5 @@
     <string name="title_activity_notification_settings">NotificationSettings</string>
     <string name="title_activity_confirm_code">ConfirmCode</string>
     <string name="title_activity_bottom_nav_bar">BottomNavBar</string>
+    <string name="title_activity_product">Product</string>
 </resources>
