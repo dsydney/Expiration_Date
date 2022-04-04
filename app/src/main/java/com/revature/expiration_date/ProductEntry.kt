@@ -201,10 +201,9 @@ fun datepicker() {
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            date.value = "$month/$dayOfMonth/$year"
+            date.value = "${month+1}/$dayOfMonth/$year"
         }, year, month, day
     )
-
 
     Button(onClick = {
         datePickerDialog.show()
@@ -214,6 +213,7 @@ fun datepicker() {
     Spacer(modifier = Modifier.size(16.dp))
 
     Text(text = "Selected Date: ${date.value}", fontSize = 15.sp, textAlign = TextAlign.Center)
+
 }
 
 @RequiresApi(Build.VERSION_CODES.N)
@@ -240,7 +240,8 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
         TopAppBar(title = { Text("Product Entry") })
 
 
-        Column {
+        Column (modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center)
+        {
 
             //Contents of Column:
             // product dropdown menu
