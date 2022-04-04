@@ -50,9 +50,9 @@ fun ConfirmEmailScreen() {
     val clicked = rememberSaveable{ mutableStateOf(false)}
 
     Column {
-        TopAppBar() {
+        TopAppBar(title = {
             Text(text = "Confirm Email Screen")
-        }
+        })
         Column(
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

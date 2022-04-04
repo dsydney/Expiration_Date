@@ -222,10 +222,28 @@ fun RefrigeratorScreen() {
         ) {
             Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
         }
-        Column(Modifier.verticalScroll(rememberScrollState())) {
+        Box() {
 
-            Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
-            
+            Image(
+                painter = painterResource(id = R.drawable.womanlookingatcan),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+
+                Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+                Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+                Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+                Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+                Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+                Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+                Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
+
+                Spacer(modifier = Modifier.height(100.dp))
+
+            }
         }
     }
 }

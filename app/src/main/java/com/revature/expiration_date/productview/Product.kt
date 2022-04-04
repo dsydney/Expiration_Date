@@ -39,9 +39,9 @@ class Product : ComponentActivity() {
 fun Product(image: Int, name: String, expirationDate: String) {
     Card(
         elevation = 10.dp,
-        shape = RoundedCornerShape(30.dp),
-        modifier = Modifier.padding(15.dp)
-        //modifier = Modifier.fillMaxWidth()
+        shape = RoundedCornerShape(15.dp),
+        modifier = Modifier.padding(15.dp),
+        //backgroundColor = Color.Transparent
     ) {
         Row(
             modifier = Modifier
@@ -71,7 +71,7 @@ fun Product(image: Int, name: String, expirationDate: String) {
                 imageVector = Icons.Default.Delete,
                 contentDescription = "",
                 tint = Color.Red,
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier.size(30.dp)
                     .clickable(
                         onClick = {
                             //Delete Product

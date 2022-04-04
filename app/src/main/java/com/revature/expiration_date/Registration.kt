@@ -47,9 +47,9 @@ fun RegistrationScreen() {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column {
-        TopAppBar() {
+        TopAppBar(title = {
             Text(text = "Registration Screen")
-        }
+        })
         Column(
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

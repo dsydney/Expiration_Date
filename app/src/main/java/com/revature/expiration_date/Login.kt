@@ -57,9 +57,9 @@ fun LoginScreen() {
     val clicked = rememberSaveable{ mutableStateOf(false)}
 
     Column {
-        TopAppBar() {
+        TopAppBar(title = {
             Text(text = "Login Screen")
-        }
+        })
         Column(
             Modifier
                 .fillMaxSize()
