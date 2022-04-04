@@ -224,13 +224,7 @@ fun RefrigeratorScreen() {
         }
         Column(Modifier.verticalScroll(rememberScrollState())) {
 
-            testRowItem()
-            testRowItem()
-            testRowItem()
-            testRowItem()
-            testRowItem()
-            testRowItem()
-            Product(name = "Eggs", expirationDate = "4/25/22")
+            Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
             
         }
     }

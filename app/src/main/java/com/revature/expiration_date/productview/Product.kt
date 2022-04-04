@@ -1,18 +1,24 @@
 package com.revature.expiration_date.productview
 
-import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.revature.expiration_date.R
 import com.revature.expiration_date.productview.ui.theme.Expiration_DateTheme
 
 class Product : ComponentActivity() {
@@ -30,26 +36,48 @@ class Product : ComponentActivity() {
 }
 
 @Composable
-fun testRowItem() {
-    Text(text = "TESTTESTTESTTESTTESTTESTTESTTESTTEST")
-}
-
-@Composable
-fun Product(name: String, expirationDate: String) {
+fun Product(image: Int, name: String, expirationDate: String) {
     Card(
         elevation = 10.dp,
-        modifier = Modifier.fillMaxWidth()
+        shape = RoundedCornerShape(30.dp),
+        modifier = Modifier.padding(15.dp)
+        //modifier = Modifier.fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+                Image(
+                    painter = painterResource(id = image),
+                    contentDescription = "",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.height(50.dp)
+                )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
             Text(text = name)
 
             Spacer(modifier = Modifier.width(10.dp))
 
             Text(text = expirationDate)
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "",
+                tint = Color.Red,
+                modifier = Modifier.size(50.dp)
+                    .clickable(
+                        onClick = {
+                            //Delete Product
+                        }
+                    )
+            )
         }
     }
 
