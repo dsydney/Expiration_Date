@@ -112,20 +112,6 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
                 )
 
 
-/*                Text(text = defaultText)
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                Text(text = selectedItem)
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                Icon(
-                    icon, "",
-                    Modifier
-                        .clickable { expanded = !expanded }
-                        .background(color = MaterialTheme.colors.primary)
-                    )*/
             }
         }
 
