@@ -21,11 +21,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.revature.expiration_date.datamodels.User
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodels.UserViewModel
 
 class Registration : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         setContent {
             Expiration_DateTheme {
                 // A surface container using the 'background' color from the theme
@@ -33,7 +38,7 @@ class Registration : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RegistrationScreen()
+                    RegistrationScreen(userViewModel)
                 }
             }
         }
@@ -42,14 +47,14 @@ class Registration : ComponentActivity() {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(userViewModel: UserViewModel) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column {
-        TopAppBar() {
+        TopAppBar(title = {
             Text(text = "Registration Screen")
-        }
+        })
         Column(
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -120,6 +125,11 @@ fun RegistrationScreen() {
                 //Toast message if they don't match, send to next screen if they do match
                 if (password.value == confirmpassword.value) {
                     Toast.makeText(context, "Passwords match", Toast.LENGTH_LONG).show()
+                    userViewModel.insertUser(
+                        User(
+                            email = email.value,
+                            name = username.value,
+                            password = password.value))
                     context.startActivity(Intent(context, ConfirmCode()::class.java))
                 } else {
                     Toast.makeText(context, "Passwords do not match", Toast.LENGTH_LONG).show()
@@ -131,10 +141,10 @@ fun RegistrationScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview3() {
-    Expiration_DateTheme {
-        RegistrationScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview3() {
+//    Expiration_DateTheme {
+//        RegistrationScreen()
+//    }
+//}

@@ -8,7 +8,7 @@ import com.revature.expiration_date.network.Items
 import com.revature.expiration_date.network.Login
 import com.revature.expiration_date.network.Product
 import com.revature.expiration_date.network.RequestProduct
-import com.revature.expiration_date.network.repository.RetrofitHelper
+import com.revature.expiration_date.repository.RetrofitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception

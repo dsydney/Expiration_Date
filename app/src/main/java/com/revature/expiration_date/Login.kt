@@ -14,6 +14,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -26,13 +27,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
+import com.revature.expiration_date.productview.ProductView
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodels.UserViewModel
 
 class Login : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         setContent {
             Expiration_DateTheme {
                 // A surface container using the 'background' color from the theme
@@ -40,7 +45,7 @@ class Login : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoginScreen()
+                    LoginScreen(userViewModel)
                 }
             }
         }
@@ -50,16 +55,17 @@ class Login : ComponentActivity() {
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(userViewModel: UserViewModel) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val navController = rememberNavController()
     val clicked = rememberSaveable{ mutableStateOf(false)}
+    val userList = userViewModel.readAllData().observeAsState(arrayListOf())
 
     Column {
-        TopAppBar() {
+        TopAppBar(title = {
             Text(text = "Login Screen")
-        }
+        })
         Column(
             Modifier
                 .fillMaxSize()
@@ -82,12 +88,12 @@ fun LoginScreen() {
                     onDone = {keyboardController?.hide()})
             )
             //TextField Password
-            val password = rememberSaveable {
+            val word = rememberSaveable {
                 mutableStateOf("")
             }
             TextField(
-                value = password.value,
-                onValueChange = {password.value = it},
+                value = word.value,
+                onValueChange = {word.value = it},
                 label = {
                     Text(text = "Password")
                 },
@@ -103,11 +109,20 @@ fun LoginScreen() {
                 /* viewModel.login(email, password) */
                 //Use an if statement
                 //Toast message if they don't match, send to next screen if they do match
-                if (password.value == "qwerty" && username.value == "tombom") { //Eventually, this should search an DB for registered users
-                    //context.startActivity(Intent(context, ProductView()::class.java))
-                    clicked.value = true
-                } else {
-                    Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG).show()
+//                if (password.value == "qwerty" && username.value == "tombom") { //Eventually, this should search an DB for registered users
+//                    //context.startActivity(Intent(context, ProductView()::class.java))
+//                    clicked.value = true
+//                }
+                //This is using the DB for registered users
+                val holder =userList.value
+                holder.forEach { user ->
+                    if (username.value.equals(user.name) && word.value.equals(user.password)) {
+                        context.startActivity(Intent(context, ProductView::class.java))
+                        clicked.value = true
+                    } else {
+                        Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
             }) {
                 Text(text = "Login")
@@ -121,11 +136,11 @@ fun LoginScreen() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview2() {
-    Expiration_DateTheme {
-        LoginScreen()
-    }
-}
+//@RequiresApi(Build.VERSION_CODES.N)
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview2() {
+//    Expiration_DateTheme {
+//        LoginScreen()
+//    }
+//}

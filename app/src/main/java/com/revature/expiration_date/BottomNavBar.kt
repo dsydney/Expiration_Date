@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.revature.expiration_date.productview.ProductViewScreen
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 import com.revature.expiration_date.viewmodel.ProductsViewModel
 

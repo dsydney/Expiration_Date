@@ -123,36 +123,50 @@ fun Main() {
     Column {
 
         //Title
-        TopAppBar() {
-            Text(text = "Expiration Date")
+        TopAppBar(
+            title = { Text(text = "Expiration Date") }
+        )
+        
+        Box() {
+
+            Image(
+                painter = painterResource(id = R.drawable.womanlookingatcan),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxHeight()
+            )
+
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.5f)
+                    .align(alignment = Alignment.BottomCenter),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+
+
+                //Registration Button
+                Button(onClick = {
+                    Toast.makeText(context, "Go to Registration Screen", Toast.LENGTH_LONG).show()
+                    context.startActivity(Intent(context, Registration()::class.java))
+                }) {
+                    Text("Register")
+                }
+
+                // text 'or'
+                //Text(text = "or")
+
+                //Login Button
+                Button(onClick = {
+                    Toast.makeText(context, "Go to Login Screen", Toast.LENGTH_LONG).show()
+                    context.startActivity(Intent(context, Login()::class.java))
+                }) {
+                    Text(text = "Login")
+                }
+
+            } // End Column
         }
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.5f),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            //Registration Button
-            Button(onClick = {
-                Toast.makeText(context, "Go to Registration Screen", Toast.LENGTH_LONG).show()
-                context.startActivity(Intent(context, Registration()::class.java))
-            }) {
-                Text("Register")
-            }
-
-            // text 'or'
-            Text(text = "or")
-
-            //Login Button
-            Button(onClick = {
-                Toast.makeText(context, "Go to Login Screen", Toast.LENGTH_LONG).show()
-                context.startActivity(Intent(context, Login()::class.java))
-            }) {
-                Text(text = "Login")
-            }
-
-        } // End Column
     } // End Outer Column
 } // End Main()
 

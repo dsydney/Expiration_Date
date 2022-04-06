@@ -1,4 +1,4 @@
-package com.revature.expiration_date
+package com.revature.expiration_date.productview
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.revature.expiration_date.R
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 import com.revature.expiration_date.viewmodel.ProductsViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -221,90 +222,27 @@ fun RefrigeratorScreen() {
         ) {
             Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
         }
-        Column(Modifier.verticalScroll(rememberScrollState())) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
+        Box() {
+
+            Image(
+                painter = painterResource(id = R.drawable.womanlookingatcan),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+
+                Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+                Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+                Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+                Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+                Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+                Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+                Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
+
+                Spacer(modifier = Modifier.height(100.dp))
+
             }
         }
     }

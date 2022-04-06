@@ -1,4 +1,4 @@
-package com.revature.expiration_date.network.repository
+package com.revature.expiration_date.repository
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient

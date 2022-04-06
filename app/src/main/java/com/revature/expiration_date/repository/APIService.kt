@@ -1,4 +1,4 @@
-package com.revature.expiration_date.network.repository
+package com.revature.expiration_date.repository
 
 import com.revature.expiration_date.network.*
 import retrofit2.Response
