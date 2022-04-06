@@ -144,6 +144,8 @@ fun photos() {
         horizontalArrangement = Arrangement.SpaceAround
     ) {
 
+        //need to call CameraFunction with button action
+
         Button(onClick = {}) {
             Image(
                 painterResource(id = R.drawable.camera_icon),
@@ -215,7 +217,7 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
     val categoryList = listOf("Dairy", "Vegetables", "Meat", "Fruits")
     val locationList = listOf("Fridge", "Freezer", "Pantry", "Counter")
     val location = rememberSaveable{mutableStateOf("")}
-    var productName by rememberSaveable {mutableStateOf("")}
+    var product by rememberSaveable {mutableStateOf("")}
     val category = rememberSaveable {mutableStateOf("")}
     var textFiledSize by remember { mutableStateOf(Size.Zero)}
 
@@ -258,10 +260,15 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             photos()
 
 
+/*            Button(onClick = { viewModel.product(item, expiration, category, location)}) {
+
+
+                Text(text = "Add Item")
+            }
+*/
         }
 
 
-//        BottomBar()
     }
 }
 
