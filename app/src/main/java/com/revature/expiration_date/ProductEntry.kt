@@ -155,7 +155,7 @@ fun photos() {
 
             Text(text = "Add a photo", Modifier.padding(start = 10.dp))
         }
-
+/*
         Button(onClick = {}) {
             Image(
                 painterResource(id = R.drawable.image_icon),
@@ -165,6 +165,8 @@ fun photos() {
 
             Text(text = "Add an image", Modifier.padding(start = 10.dp))
         }
+
+ */
 
 
     }
