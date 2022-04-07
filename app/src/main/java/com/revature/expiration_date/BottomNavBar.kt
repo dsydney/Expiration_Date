@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -106,8 +107,9 @@ fun BottomNavBar(
                 navController = navController,
                 onItemClick = {
 
-                    navController.navigate(it.route)
-
+                    navController.navigate(it.route) {
+                        popUpTo(navController.graph.findStartDestination().id)
+                    }
                 }
 
             )
