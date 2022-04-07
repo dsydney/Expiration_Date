@@ -1,10 +1,12 @@
 package com.revature.expiration_date
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 
 class ConfirmCode : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -41,6 +44,7 @@ class ConfirmCode : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun ConfirmEmailScreen() {
@@ -68,6 +72,7 @@ fun ConfirmEmailScreen() {
                 label = {
                     Text(text = "Enter Code that was emailed to you")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})

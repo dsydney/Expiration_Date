@@ -83,6 +83,7 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Username")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
