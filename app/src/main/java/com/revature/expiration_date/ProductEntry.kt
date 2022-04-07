@@ -146,7 +146,7 @@ fun photos() {
 
         //need to call CameraFunction with button action
 
-        Button(onClick = {}) {
+        Button(onClick = {CameraFunction}) {
             Image(
                 painterResource(id = R.drawable.camera_icon),
                 contentDescription = "Camera icon",
