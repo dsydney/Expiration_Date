@@ -58,7 +58,7 @@ fun NotificationSettingsScreen( /* viewModel: ProductsViewModel */ ) {
                 }
                 Row(
                     modifier = rowModifier,
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.SpaceBetween, //End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -74,7 +74,7 @@ fun NotificationSettingsScreen( /* viewModel: ProductsViewModel */ ) {
                 }
                 Row(
                     modifier = rowModifier,
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.SpaceBetween, //End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -90,7 +90,7 @@ fun NotificationSettingsScreen( /* viewModel: ProductsViewModel */ ) {
                 }
                 Row(
                     modifier = rowModifier,
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.SpaceBetween, //End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -106,7 +106,7 @@ fun NotificationSettingsScreen( /* viewModel: ProductsViewModel */ ) {
                 }
                 Row(
                     modifier = rowModifier,
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.SpaceBetween, //End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
