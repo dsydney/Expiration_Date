@@ -243,7 +243,7 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             // photo - front
             // photo - back
 
-            dropDownMenu(list = productList, "Select Item")
+            dropDownMenu(list = productList, "Select or Enter Item")
 
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -251,11 +251,11 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = categoryList, "Select Category")
+            dropDownMenu(list = categoryList, "Select or Enter Category")
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = locationList, "Select Location")
+            dropDownMenu(list = locationList, "Select or Enter Location")
 
             Spacer(modifier = Modifier.size(40.dp))
 
