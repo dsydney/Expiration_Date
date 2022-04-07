@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -97,7 +98,7 @@ fun BottomNavBar(
 
                         name = "Settings",
                         route = "settings",
-                        icon = Icons.Default.Settings
+                        icon = Icons.Default.Notifications
 
                     )
 
