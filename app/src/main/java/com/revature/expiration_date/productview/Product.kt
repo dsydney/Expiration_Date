@@ -37,16 +37,19 @@ class Product : ComponentActivity() {
 
 @Composable
 fun Product(image: Int, name: String, expirationDate: String) {
+    /*
     Card(
         elevation = 10.dp,
         shape = RoundedCornerShape(15.dp),
         modifier = Modifier.padding(15.dp),
-        //backgroundColor = Color.Transparent
+        backgroundColor = MaterialTheme.colors.primaryVariant
     ) {
+
+     */
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(10.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -54,7 +57,7 @@ fun Product(image: Int, name: String, expirationDate: String) {
                     painter = painterResource(id = image),
                     contentDescription = "",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.height(50.dp)
+                    modifier = Modifier.height(40.dp)
                 )
 
             Spacer(modifier = Modifier.width(10.dp))
@@ -79,6 +82,5 @@ fun Product(image: Int, name: String, expirationDate: String) {
                     )
             )
         }
-    }
-
+    //}
 }

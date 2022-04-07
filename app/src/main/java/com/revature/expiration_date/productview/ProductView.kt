@@ -212,7 +212,9 @@ fun DrawerItem(item: NavigationItem, selected: Boolean, onItemClick: (Navigation
 
 @Composable
 fun RefrigeratorScreen() {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -220,8 +222,9 @@ fun RefrigeratorScreen() {
                 .padding(20.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+            Text(text = "Refrigerator Contents", color = MaterialTheme.colors.onPrimary)
         }
+        /*
         Box() {
 
             Image(
@@ -230,6 +233,8 @@ fun RefrigeratorScreen() {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
+
+         */
 
             Column(Modifier.verticalScroll(rememberScrollState())) {
 
@@ -244,7 +249,7 @@ fun RefrigeratorScreen() {
                 Spacer(modifier = Modifier.height(100.dp))
 
             }
-        }
+        //}
     }
 }
 
