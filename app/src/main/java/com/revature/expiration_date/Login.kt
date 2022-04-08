@@ -118,7 +118,6 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 val holder =userList.value
                 holder.forEach { user ->
                     if (username.value == user.name && word.value == user.password) {
-                        context.startActivity(Intent(context, ProductView::class.java))
                         clicked.value = true
                     } else {
                         Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG)
