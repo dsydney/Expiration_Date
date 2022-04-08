@@ -120,8 +120,8 @@ fun LoginScreen(userViewModel: UserViewModel) {
                     if (username.value == user.name && word.value == user.password) {
                         clicked.value = true
                     } else {
-                        Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG)
-                            .show()
+                        //Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG)
+                            //.show()
                     }
                 }
             }) {
