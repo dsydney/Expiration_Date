@@ -330,7 +330,7 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             Spacer(modifier = Modifier.size(40.dp))
 
             //photos()
-            TakePicture()
+            //TakePicture()  //Commenting this out until we get it working
 
 /*            Button(onClick = { viewModel.product(item, expiration, category, location)}) {
 
