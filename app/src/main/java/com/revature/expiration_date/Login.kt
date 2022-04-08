@@ -116,7 +116,7 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 //This is using the DB for registered users
                 val holder =userList.value
                 holder.forEach { user ->
-                    if (username.value.equals(user.name) && word.value.equals(user.password)) {
+                    if (username.value == user.name && word.value == user.password) {
                         context.startActivity(Intent(context, ProductView::class.java))
                         clicked.value = true
                     } else {
