@@ -215,9 +215,9 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var expanded by remember {mutableStateOf (false)}
-    val productList = listOf("Eggs", "Milk", "Lettuce", "Pork chops")
-    val categoryList = listOf("Dairy", "Vegetables", "Meat", "Fruits")
-    val locationList = listOf("Fridge", "Freezer", "Pantry", "Counter")
+    val productList = listOf("eggs", "milk", "lettuce", "pork chops", "cheese", "apples")
+    val categoryList = listOf("dairy", "vegetables", "meat", "fruits", "bread and cereals", "drinks")
+    val locationList = listOf("Fridge", "Freezer", "Pantry", "Counter", "Top Cupboard", "Bottom Cupboard")
     val location = rememberSaveable{mutableStateOf("")}
     var product by rememberSaveable {mutableStateOf("")}
     val category = rememberSaveable {mutableStateOf("")}
