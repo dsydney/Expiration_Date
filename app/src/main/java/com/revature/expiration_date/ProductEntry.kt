@@ -3,13 +3,18 @@ package com.revature.expiration_date
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.icu.util.Calendar
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.DatePicker
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -29,6 +34,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -106,7 +112,7 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
                     label = {Text(text = defaultText)},
                     trailingIcon = {
                         Icon(icon, "", Modifier
-                            .clickable {expanded = !expanded}
+                            .clickable { expanded = !expanded }
                             .background(color = MaterialTheme.colors.primary))
                     }
                 )
@@ -167,6 +173,63 @@ fun photos() {
         }
 
  */
+
+
+    }
+}
+
+@Composable
+fun TakePicture() {
+    val context = LocalContext.current
+
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+    val bitmap =  remember {
+        mutableStateOf<Bitmap?>(null)
+    }
+
+    val launcher = rememberLauncherForActivityResult(contract =
+    ActivityResultContracts.GetContent()) { uri: Uri? ->
+        imageUri = uri
+    }
+
+    Row() {
+
+        Button(onClick = {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            context.startActivity(intent)
+        }) {
+            Text(text = "Take a Picture")
+        }
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        Button(onClick = {
+            launcher.launch("image/*")
+        }) {
+            Text(text = "Pick image")
+        }
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        imageUri?.let {
+            if (Build.VERSION.SDK_INT < 28) {
+                bitmap.value = MediaStore.Images
+                    .Media.getBitmap(context.contentResolver,it)
+
+            } else {
+                val source = ImageDecoder
+                    .createSource(context.contentResolver,it)
+                bitmap.value = ImageDecoder.decodeBitmap(source)
+            }
+
+            bitmap.value?.let {  btm ->
+                Image(bitmap = btm.asImageBitmap(),
+                    contentDescription =null,
+                    modifier = Modifier.size(60.dp))
+            }
+        }
 
 
     }
@@ -259,8 +322,8 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
 
             Spacer(modifier = Modifier.size(40.dp))
 
-            photos()
-
+            //photos()
+            TakePicture()
 
 /*            Button(onClick = { viewModel.product(item, expiration, category, location)}) {
 
