@@ -7,16 +7,15 @@ data class Product(
     @SerializedName("category") val category: String,
     @SerializedName("location") val location: String,
     @SerializedName("expiration") val expiration: String,
-)
+) {
+    override fun toString(): String {
+        return "\n$item ($category) from $location"
+    }
+}
 
 data class RequestProduct(
     @SerializedName("location") val location: String,
     @SerializedName("choices") val choices: List<String>
 )
-
-//object request: RequestProduct(
-//    location = "Which location do you want to look at?",
-//    choices = listOf("Fridge", "Freezer", "Pantry", "All")
-//)
 
 data class Items(val items: List<Product>)
