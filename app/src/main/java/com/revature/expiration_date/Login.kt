@@ -83,6 +83,7 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Username")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
@@ -116,8 +117,7 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 //This is using the DB for registered users
                 val holder =userList.value
                 holder.forEach { user ->
-                    if (username.value.equals(user.name) && word.value.equals(user.password)) {
-                        context.startActivity(Intent(context, ProductView::class.java))
+                    if (username.value == user.name && word.value == user.password) {
                         clicked.value = true
                     } else {
                         Toast.makeText(context, "Incorrect Password or Username", Toast.LENGTH_LONG)

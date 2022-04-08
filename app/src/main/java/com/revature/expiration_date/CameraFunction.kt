@@ -165,7 +165,7 @@ class CameraFunction : ComponentActivity() {
             ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exception: ImageCaptureException) {
 
-                    Log.e(TAG, "Photo Capure Failed:${exception.message}")
+                    Log.e(TAG, "Photo Capture Failed:${exception.message}")
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {

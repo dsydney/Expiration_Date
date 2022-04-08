@@ -16,10 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.revature.expiration_date.network.RequestProduct
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
+import com.revature.expiration_date.viewmodel.ProductsViewModel
 
 @Composable
-fun SendMessageScreen() {
+fun SendMessageScreen( /* viewModel: ProductsViewModel */) {
+    val context = LocalContext.current
+
+    val viewModel = viewModel<ProductsViewModel>()
+
+    viewModel.listOfAllProducts(
+        location = "Which location do you want to look at?",
+        choices = listOf("Fridge", "Freezer", "Pantry", "All")
+    )
+
     var selectExpired: Boolean by rememberSaveable { mutableStateOf(true) }
     var selectToday: Boolean by rememberSaveable { mutableStateOf(true) }
     var selectSoon: Boolean by rememberSaveable { mutableStateOf(false) }
@@ -30,7 +43,6 @@ fun SendMessageScreen() {
         checkedTrackColor = MaterialTheme.colors.primaryVariant,
         uncheckedTrackColor = MaterialTheme.colors.secondaryVariant
     )
-    val context = LocalContext.current
 
     // TEMP - replace with actual lists of items as formatted Strings
     // CONSUME API
@@ -117,10 +129,13 @@ fun SendMessageScreen() {
                             val sendIntent = Intent(Intent.ACTION_SEND).apply {
                                 putExtra(
                                     Intent.EXTRA_TEXT,
-                                    "Shopping List:/n" +
-                                        (if (selectExpired) "Expired: $itemsExpired/n" else "") +
-                                        (if (selectToday) "Going Bad: $itemsToday/n" else "") +
-                                        (if (selectSoon) "Replace: $itemsSoon/n" else "") +
+                                    "Shopping List:\n" +
+//                                        (if (selectExpired) "Expired: $itemsExpired\n" else "") +
+//                                        (if (selectToday) "Going Bad: $itemsToday\n" else "") +
+//                                        (if (selectSoon) "Replace: $itemsSoon\n" else "") +
+                                        // TEST
+
+                                        "${viewModel.items.items}\n" +
                                         "Thank you!"
                                 )
                                 type = "text/plain"
@@ -134,7 +149,7 @@ fun SendMessageScreen() {
                         } else {
                             Toast.makeText(
                                 context,
-                                "Select a list to send",
+                                "Must select a list",
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -150,10 +165,10 @@ fun SendMessageScreen() {
     )
 }
 
-@Preview
-@Composable
-fun PreviewSendMessageScreen() {
-    Expiration_DateTheme {
-        SendMessageScreen()
-    }
-}
+//@Preview
+//@Composable
+//fun PreviewSendMessageScreen() {
+//    Expiration_DateTheme {
+//        SendMessageScreen()
+//    }
+//}

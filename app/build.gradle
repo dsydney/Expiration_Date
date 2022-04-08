@@ -49,6 +49,11 @@ android {
 dependencies {
 
     // DataStore Preferences
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    // optional - RxJava2 support
+    implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0"
+    // optional - RxJava3 support
+    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
     implementation "androidx.datastore:datastore-preferences-core:1.0.0"
 
     // Retrofit2 for API consumption
@@ -63,10 +68,10 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-compose:2.4.1"
 
+    // Room Database
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt annotationProcessor ("androidx.room:room-compiler:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
-
 
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 

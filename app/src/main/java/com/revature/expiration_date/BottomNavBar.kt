@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,9 +39,6 @@ class BottomNavBar : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        val productsViewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
-
         setContent {
             Expiration_DateTheme {
                 // A surface container using the 'background' color from the theme
@@ -53,8 +52,7 @@ class BottomNavBar : ComponentActivity() {
 
                     BottomNavBar(
                         navController = navController,
-                        startScreen = startScreen,
-//                        viewModel = productsViewModel
+                        startScreen = startScreen
                     )
                 }
             }
@@ -67,8 +65,7 @@ class BottomNavBar : ComponentActivity() {
 @Composable
 fun BottomNavBar(
     navController: NavHostController,
-    startScreen: String,
-//    viewModel: ProductsViewModel
+    startScreen: String
 ) {
     Scaffold(
 
@@ -97,7 +94,7 @@ fun BottomNavBar(
 
                         name = "Settings",
                         route = "settings",
-                        icon = Icons.Default.Settings
+                        icon = Icons.Default.Notifications
 
                     )
 
@@ -105,8 +102,13 @@ fun BottomNavBar(
                 navController = navController,
                 onItemClick = {
 
-                    navController.navigate(it.route)
-
+                    navController.navigate(it.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
 
             )
@@ -117,8 +119,7 @@ fun BottomNavBar(
 
         Navigation(
             navController = navController,
-            startScreen = startScreen,
-//            viewModel = viewModel
+            startScreen = startScreen
         )
 
     }
@@ -141,19 +142,25 @@ fun Navigation(
         composable("add") {
 
             //This will be our home screen
-            ProductEntryScreen( /* viewModel */ )
+            ProductEntryScreen()
 
         }
         composable("view") {
 
             //This will be our chat screen
-            ProductViewScreen( /* viewModel */ )
+            ProductViewScreen()
 
         }
         composable("settings") {
 
             //This will be our settings screen
-            NotificationSettingsScreen( /* viewModel */ )
+            NotificationSettingsScreen(navController)
+
+        }
+        composable("message") {
+
+            // Screen to export shopping list as a message
+            SendMessageScreen()
 
         }
 

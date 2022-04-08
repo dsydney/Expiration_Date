@@ -48,7 +48,7 @@ class ProductsViewModel: ViewModel() {
 //    private val expiredRequestLiveData = MutableLiveData<Boolean>()
     private val addItemRequestLiveData = MutableLiveData<Boolean>()
 
-    private lateinit var items: Items
+    lateinit var items: Items
 
     fun listOfAllProducts(location: String, choices: List<String>) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -70,6 +70,7 @@ fun RegistrationScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Email")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
@@ -84,6 +85,7 @@ fun RegistrationScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Username")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
@@ -98,6 +100,7 @@ fun RegistrationScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Password")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
@@ -112,6 +115,7 @@ fun RegistrationScreen(userViewModel: UserViewModel) {
                 label = {
                     Text(text = "Password")
                 },
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(
                     onDone = {keyboardController?.hide()})
