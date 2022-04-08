@@ -109,10 +109,10 @@ fun LoginScreen(userViewModel: UserViewModel) {
                 /* viewModel.login(email, password) */
                 //Use an if statement
                 //Toast message if they don't match, send to next screen if they do match
-//                if (password.value == "qwerty" && username.value == "tombom") { //Eventually, this should search an DB for registered users
-//                    //context.startActivity(Intent(context, ProductView()::class.java))
-//                    clicked.value = true
-//                }
+ //               if (password.value == "qwerty" && username.value == "tombom") { //Eventually, this should search an DB for registered users
+ //                   context.startActivity(Intent(context, ProductView()::class.java))
+ //                   clicked.value = true
+ //               }
                 //This is using the DB for registered users
                 val holder =userList.value
                 holder.forEach { user ->
