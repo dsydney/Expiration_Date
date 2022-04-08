@@ -332,12 +332,15 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             //photos()
             //TakePicture()  //Commenting this out until we get it working
 
-/*            Button(onClick = { viewModel.product(item, expiration, category, location)}) {
+            Button(
+                onClick = { //viewModel.product(item, expiration, category, location)
+                }
+            ) {
 
 
                 Text(text = "Add Item")
             }
-*/
+
         }
 
 
