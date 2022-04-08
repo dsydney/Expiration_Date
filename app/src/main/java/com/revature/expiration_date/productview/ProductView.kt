@@ -212,7 +212,9 @@ fun DrawerItem(item: NavigationItem, selected: Boolean, onItemClick: (Navigation
 
 @Composable
 fun RefrigeratorScreen() {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -220,30 +222,20 @@ fun RefrigeratorScreen() {
                 .padding(20.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Refrigerator Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+            Text(text = "Refrigerator Contents", color = MaterialTheme.colors.onPrimary)
         }
-        Box() {
+        Column(Modifier.verticalScroll(rememberScrollState())) {
 
-            Image(
-                painter = painterResource(id = R.drawable.womanlookingatcan),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
+            Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+            Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+            Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+            Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+            Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+            Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+            Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
 
-            Column(Modifier.verticalScroll(rememberScrollState())) {
+            Spacer(modifier = Modifier.height(100.dp))
 
-                Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
-                Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
-                Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
-                Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
-                Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
-                Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
-                Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
-
-                Spacer(modifier = Modifier.height(100.dp))
-
-            }
         }
     }
 }
@@ -258,93 +250,20 @@ fun FreezerScreen() {
                 .padding(20.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Freezer Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+            Text(text = "Freezer Contents", color = MaterialTheme.colors.onPrimary)
         }
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
+
+            //Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+            //Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+            Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+            Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+            Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+            Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+            Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
+
+            Spacer(modifier = Modifier.height(100.dp))
+
         }
     }
 }
@@ -359,93 +278,20 @@ fun CounterScreen() {
                 .padding(20.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Counter Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+            Text(text = "Counter Contents", color = MaterialTheme.colors.onPrimary)
         }
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
+
+            Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+            //Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+            Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+            Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+            Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+            //Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+            //Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
+
+            Spacer(modifier = Modifier.height(100.dp))
+
         }
     }
 }
@@ -460,93 +306,20 @@ fun PantryScreen() {
                 .padding(20.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Pantry Contents", fontFamily = FontFamily.Cursive, color = MaterialTheme.colors.onPrimary)
+            Text(text = "Pantry Contents", color = MaterialTheme.colors.onPrimary)
         }
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 1")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 2")
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-            ) {
-                Text(text = "Item 3")
-            }
+
+            Product(image = R.drawable.eggs, name = "Eggs", expirationDate = "4/25/22")
+            //Product(image = R.drawable.milkclipart, name = "Milk", expirationDate = "4/29/22")
+            Product(image = R.drawable.cheese, name = "Cheese", expirationDate = "4/29/22")
+            //Product(image = R.drawable.ham, name = "Ham", expirationDate = "5/5/22")
+            Product(image = R.drawable.butter, name = "Butter", expirationDate = "4/24/22")
+            Product(image = R.drawable.yogurrt, name = "Yogurt", expirationDate = "4/27/22")
+            Product(image = R.drawable.orange_juice, name = "Orange Juice", expirationDate = "4/30/22")
+
+            Spacer(modifier = Modifier.height(100.dp))
+
         }
     }
 }

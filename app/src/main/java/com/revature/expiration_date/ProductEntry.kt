@@ -146,7 +146,7 @@ fun photos() {
 
         //need to call CameraFunction with button action
 
-        Button(onClick = {}) {
+        Button(onClick = {CameraFunction}) {
             Image(
                 painterResource(id = R.drawable.camera_icon),
                 contentDescription = "Camera icon",
@@ -155,7 +155,7 @@ fun photos() {
 
             Text(text = "Add a photo", Modifier.padding(start = 10.dp))
         }
-
+/*
         Button(onClick = {}) {
             Image(
                 painterResource(id = R.drawable.image_icon),
@@ -165,6 +165,8 @@ fun photos() {
 
             Text(text = "Add an image", Modifier.padding(start = 10.dp))
         }
+
+ */
 
 
     }
@@ -241,7 +243,7 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             // photo - front
             // photo - back
 
-            dropDownMenu(list = productList, "Select Item")
+            dropDownMenu(list = productList, "Select or Enter Item")
 
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -249,11 +251,11 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = categoryList, "Select Category")
+            dropDownMenu(list = categoryList, "Select or Enter Category")
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = locationList, "Select Location")
+            dropDownMenu(list = locationList, "Select or Enter Location")
 
             Spacer(modifier = Modifier.size(40.dp))
 
