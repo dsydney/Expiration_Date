@@ -196,13 +196,20 @@ fun TakePicture() {
 
     Row() {
 
-        Button(onClick = {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            context.startActivity(intent)
-        }) {
-            Text(text = "Take a Picture")
-        }
+        Column {
+            Button(onClick = {
+                context.startActivity(Intent(context, CameraX()::class.java))
+            }) {
+                Text(text = "Open Camerax")
+            }
 
+            Button(onClick = {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                context.startActivity(intent)
+            }) {
+                Text(text = "Take a Picture")
+            }
+        }
         Spacer(modifier = Modifier.width(12.dp))
 
         Button(onClick = {
