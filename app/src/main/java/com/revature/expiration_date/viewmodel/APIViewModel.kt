@@ -50,6 +50,13 @@ class ProductsViewModel: ViewModel() {
 
     lateinit var items: Items
 
+    init {
+        listOfAllProducts(
+            location = "Which location do you want to look at?",
+            choices = listOf("Fridge", "Freezer", "Pantry", "All")
+        )
+    }
+
     fun listOfAllProducts(location: String, choices: List<String>) {
         viewModelScope.launch(Dispatchers.IO) {
             try {

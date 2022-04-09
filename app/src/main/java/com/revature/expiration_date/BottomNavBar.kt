@@ -35,7 +35,9 @@ import com.revature.expiration_date.productview.ProductViewScreen
 import com.revature.expiration_date.ui.theme.Expiration_DateTheme
 import com.revature.expiration_date.viewmodel.ProductsViewModel
 
-class BottomNavBar : ComponentActivity() {
+class BottomNavBar(screen: String = "add") : ComponentActivity() {
+    private val startScreen = screen
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class BottomNavBar : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
 
-                    val startScreen = "add"
+//                    val startScreen = startScreen
 
                     BottomNavBar(
                         navController = navController,
@@ -131,7 +133,6 @@ fun Navigation(
 
     navController: NavHostController,
     startScreen: String,
-//    viewModel: ProductsViewModel
 
 ) {
 
@@ -185,7 +186,7 @@ fun BottomNavigationBar(
     BottomNavigation(
 
         modifier = modifier,
-        backgroundColor = Color.DarkGray,
+        backgroundColor = MaterialTheme.colors.secondary, // Color.DarkGray,
         elevation = 5.dp
 
     ) {
@@ -195,8 +196,8 @@ fun BottomNavigationBar(
             BottomNavigationItem(
                 selected = selected,
                 onClick = { onItemClick(item) },
-                selectedContentColor = Color.Green,
-                unselectedContentColor = Color.Gray,
+                selectedContentColor = Color.White, // Color.Green,
+                unselectedContentColor = MaterialTheme.colors.secondaryVariant, // Color.Gray,
                 icon = {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {

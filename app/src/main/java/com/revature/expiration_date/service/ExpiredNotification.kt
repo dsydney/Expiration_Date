@@ -8,32 +8,51 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.revature.expiration_date.BottomNavBar
 import com.revature.expiration_date.R
-import com.revature.expiration_date.SendMessageScreen
+
+const val INTENT_KEY_MESSAGE = "msg"
 
 class ExpiredNotification: Service() {
     override fun onBind(p0: Intent?): IBinder? = null
 
-    private fun showNotification() {
-        val toProductView = Intent(this, ExpiredNotification::class.java).apply {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val result = super.onStartCommand(intent, flags, startId)
+        Log.i("NOTIFICATION", "onStartCommand")
+
+        val msg = intent?.getStringExtra(INTENT_KEY_MESSAGE)
+        showNotification(msg ?: "")
+        return result
+    }
+
+    private fun showNotification(msg: String) {
+        Log.i("NOTIFICATION", "Called showNotification")
+        createNotificationChannel()
+
+        val toProductView = Intent(this, BottomNavBar("view")::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-//        val toSendMessage = Intent(this, SendMessage::class.java).apply {
-//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        }
-        val tapIntent: PendingIntent = PendingIntent.getActivity(this, 0, toProductView, PendingIntent.FLAG_IMMUTABLE)
-//        val actionIntent: PendingIntent = PendingIntent.getActivity(this, 0, toProductView, PendingIntent.FLAG_IMMUTABLE)
+        val toSendMessage = Intent(this, BottomNavBar("message")::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val tapIntent: PendingIntent = PendingIntent.getActivity(this, 2, toProductView, PendingIntent.FLAG_IMMUTABLE)
+        val actionIntent: PendingIntent = PendingIntent.getActivity(this, 0, toSendMessage, PendingIntent.FLAG_IMMUTABLE)
 
-        var builder = NotificationCompat.Builder(this, "")
-            .setSmallIcon(R.drawable.ic_pantry)
-            .setContentTitle("Expired Items!")
-            .setContentText("It's time to replace some items...")
-            .setStyle(NotificationCompat.BigTextStyle().bigText("This item\nThat item\nAnother one"))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(tapIntent)
-//            .addAction(0, "SEND SHOPPING LIST", actionIntent)
-            .setAutoCancel(true)
+        with(NotificationCompat.Builder(this, "Channel ID")) {
+            setSmallIcon(R.drawable.ic_pantry)
+            setContentTitle("Expired Items!")
+            setContentText("It's time to replace some items")
+            setStyle(
+                NotificationCompat.BigTextStyle().bigText(msg)
+            )
+            priority = NotificationCompat.PRIORITY_DEFAULT
+            setContentIntent(tapIntent)
+            addAction(0, "SEND SHOPPING LIST", actionIntent)
+            setAutoCancel(true)
+            startForeground(1, build())
+        }
     }
 
     private fun createNotificationChannel() {
