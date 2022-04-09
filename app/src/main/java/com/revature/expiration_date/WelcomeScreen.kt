@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -152,7 +154,7 @@ fun Main() {
                     context.startActivity(Intent(context, Registration()::class.java))
                 }
                 ) {
-                    Text("Register")
+                    Text("Register", fontWeight = FontWeight.ExtraBold)
                 }
 
                 // text 'or'
@@ -162,9 +164,12 @@ fun Main() {
                 Button(onClick = {
                     Toast.makeText(context, "Go to Login Screen", Toast.LENGTH_LONG).show()
                     context.startActivity(Intent(context, Login()::class.java))
-                }
+                }, colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.onPrimary,
+                    contentColor = MaterialTheme.colors.primary
+                )
                 ) {
-                    Text(text = "Login")
+                    Text(text = "Login", fontWeight = FontWeight.ExtraBold)
                 }
 
             } // End Column
