@@ -150,7 +150,8 @@ fun Main() {
                 Button(onClick = {
                     Toast.makeText(context, "Go to Registration Screen", Toast.LENGTH_LONG).show()
                     context.startActivity(Intent(context, Registration()::class.java))
-                }) {
+                }
+                ) {
                     Text("Register")
                 }
 
@@ -161,7 +162,8 @@ fun Main() {
                 Button(onClick = {
                     Toast.makeText(context, "Go to Login Screen", Toast.LENGTH_LONG).show()
                     context.startActivity(Intent(context, Login()::class.java))
-                }) {
+                }
+                ) {
                     Text(text = "Login")
                 }
 

@@ -146,9 +146,19 @@ fun RegistrationScreen(userViewModel: UserViewModel) {
             ) {
                 //Button 'Register' -> TextField emailed code, Button 'send email again' -> Product Entry
                 Button(onClick = {
+                    if (email.value.equals("")) {
+                        Toast.makeText(context, "Enter email", Toast.LENGTH_LONG).show()
+                    }
+                    if (username.value.equals("")) {
+                        Toast.makeText(context, "Enter username", Toast.LENGTH_LONG).show()
+                    }
                     //Use an if statement
                     //Toast message if they don't match, send to next screen if they do match
-                    if (password.value == confirmpassword.value) {
+                    if (
+                        password.value.equals(confirmpassword.value)
+                        && !email.value.equals("")
+                        && !username.value.equals("")
+                    ) {
                         Toast.makeText(context, "Passwords match", Toast.LENGTH_LONG).show()
                         userViewModel.insertUser(
                             User(
