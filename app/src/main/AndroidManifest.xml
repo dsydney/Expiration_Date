@@ -3,8 +3,7 @@
     package="com.revature.expiration_date">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
