@@ -15,6 +15,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -52,6 +53,9 @@ import com.revature.expiration_date.viewmodel.ProductsViewModel
 import java.util.*
 
 class ProductEntry : ComponentActivity() {
+
+    private val viewModel:ProductsViewModel by viewModels()
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,7 @@ class ProductEntry : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ProductEntryScreen()
+                    ProductEntryScreen(viewModel=viewModel)
                 }
             }
         }
@@ -70,11 +74,11 @@ class ProductEntry : ComponentActivity() {
 }
 
 @Composable
-fun dropDownMenu(list: List<String>, defaultText: String): String {
+fun itemDropDownMenu(list: List<String>, defaultText: String): String {
 
     var expanded by remember { mutableStateOf(false) }
     //val list = listOf("a", "b", "c", "d")
-    var selectedItem by remember { mutableStateOf("") }
+    var itemAdded by remember { mutableStateOf("") }
     var textFilledSize by remember { mutableStateOf(Size.Zero) }
     val icon = if (expanded) {
         Icons.Filled.KeyboardArrowUp
@@ -102,8 +106,8 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TextField(value = selectedItem,
-                    onValueChange = {selectedItem = it},
+                TextField(value = itemAdded,
+                    onValueChange = {itemAdded = it},
                     modifier = Modifier
                         .fillMaxWidth()
                         .onGloballyPositioned { coordinates ->
@@ -129,7 +133,7 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
         ) {
             list.forEach { label ->
                 DropdownMenuItem(onClick = {
-                    selectedItem = label
+                    itemAdded = label
                     expanded = false
                 }) {
                     Text(text = label)
@@ -138,7 +142,151 @@ fun dropDownMenu(list: List<String>, defaultText: String): String {
         }
     }
 
-    return selectedItem
+    return itemAdded
+}
+
+@Composable
+fun categoryDropDownMenu(list: List<String>, defaultText: String): String {
+
+    var expanded by remember { mutableStateOf(false) }
+    //val list = listOf("a", "b", "c", "d")
+    var category by remember { mutableStateOf("") }
+    var textFilledSize by remember { mutableStateOf(Size.Zero) }
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Column (
+        modifier = Modifier
+            .padding(20.dp)
+    ) {
+        Box(
+            //value = selectedItem,
+            //onValueChange = { selectedItem = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    textFilledSize = coordinates.size.toSize()
+                }
+                .border(border = BorderStroke(2.dp, Color.Black))
+                .padding(3.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                TextField(value = category,
+                    onValueChange = {category = it},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .onGloballyPositioned { coordinates ->
+                            textFilledSize = coordinates.size.toSize()
+                        },
+                    label = {Text(text = defaultText)},
+                    trailingIcon = {
+                        Icon(icon, "", Modifier
+                            .clickable { expanded = !expanded }
+                            .background(color = MaterialTheme.colors.primary))
+                    }
+                )
+
+
+            }
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier
+                .width(with(LocalDensity.current){textFilledSize.width.toDp()})
+        ) {
+            list.forEach { label ->
+                DropdownMenuItem(onClick = {
+                    category = label
+                    expanded = false
+                }) {
+                    Text(text = label)
+                }
+            }
+        }
+    }
+
+    return category
+}
+
+@Composable
+fun locationDropDownMenu(list: List<String>, defaultText: String): String {
+
+    var expanded by remember { mutableStateOf(false) }
+    //val list = listOf("a", "b", "c", "d")
+    var location by remember { mutableStateOf("") }
+    var textFilledSize by remember { mutableStateOf(Size.Zero) }
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Column (
+        modifier = Modifier
+            .padding(20.dp)
+    ) {
+        Box(
+            //value = selectedItem,
+            //onValueChange = { selectedItem = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    textFilledSize = coordinates.size.toSize()
+                }
+                .border(border = BorderStroke(2.dp, Color.Black))
+                .padding(3.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                TextField(value = location,
+                    onValueChange = {location = it},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .onGloballyPositioned { coordinates ->
+                            textFilledSize = coordinates.size.toSize()
+                        },
+                    label = {Text(text = defaultText)},
+                    trailingIcon = {
+                        Icon(icon, "", Modifier
+                            .clickable { expanded = !expanded }
+                            .background(color = MaterialTheme.colors.primary))
+                    }
+                )
+
+
+            }
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier
+                .width(with(LocalDensity.current){textFilledSize.width.toDp()})
+        ) {
+            list.forEach { label ->
+                DropdownMenuItem(onClick = {
+                    location = label
+                    expanded = false
+                }) {
+                    Text(text = label)
+                }
+            }
+        }
+    }
+
+    return location
 }
 
 @Composable
@@ -257,11 +405,11 @@ fun datepicker(): String {
     day = calendar.get(Calendar.DAY_OF_MONTH)
     calendar.time = Date()
 
-    val date = remember { mutableStateOf("") }
+    var expiration by remember { mutableStateOf("") }
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            date.value = "${month+1}/$dayOfMonth/$year"
+            expiration = "${month+1}/$dayOfMonth/$year"
         }, year, month, day
     )
 
@@ -272,25 +420,26 @@ fun datepicker(): String {
     }
     Spacer(modifier = Modifier.size(16.dp))
 
-    Text(text = "Selected Date: ${date.value}", fontSize = 15.sp, textAlign = TextAlign.Center)
+    Text(text = "Selected Date: $expiration", fontSize = 15.sp, textAlign = TextAlign.Center)
 
-    return date.value
+    return expiration
 
 }
 
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
+fun ProductEntryScreen( viewModel: ProductsViewModel ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var expanded by remember {mutableStateOf (false)}
     val productList = listOf("eggs", "milk", "lettuce", "pork chops", "cheese", "apples")
     val categoryList = listOf("dairy", "vegetables", "meat", "fruits", "bread and cereals", "drinks")
     val locationList = listOf("Fridge", "Freezer", "Pantry", "Counter", "Top Cupboard", "Bottom Cupboard")
-    val location = rememberSaveable{mutableStateOf("")}
-    var product by rememberSaveable {mutableStateOf("")}
-    val category = rememberSaveable {mutableStateOf("")}
+    var location by rememberSaveable{mutableStateOf("")}
+    var item by rememberSaveable {mutableStateOf("")}
+    var expiration by rememberSaveable{mutableStateOf("")}
+    var category by rememberSaveable {mutableStateOf("")}
     var textFiledSize by remember { mutableStateOf(Size.Zero)}
 
     var icon = if (expanded) {
@@ -313,7 +462,7 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             // photo - front
             // photo - back
 
-            dropDownMenu(list = productList, "Select or Enter Item")
+            itemDropDownMenu(list = productList, "Select or Enter Item")
 
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -321,11 +470,11 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = categoryList, "Select or Enter Category")
+            categoryDropDownMenu(list = categoryList, "Select or Enter Category")
 
             Spacer(modifier = Modifier.size(16.dp))
 
-            dropDownMenu(list = locationList, "Select or Enter Location")
+            locationDropDownMenu(list = locationList, "Select or Enter Location")
 
             Spacer(modifier = Modifier.size(40.dp))
 
@@ -333,12 +482,12 @@ fun ProductEntryScreen( /* viewModel: ProductsViewModel */ ) {
             //TakePicture()  //Commenting this out until we get it working
 
             Button(
-                onClick = { //viewModel.product(item, expiration, category, location)
+                onClick = { viewModel.product(item, expiration, category, location)
                 }
             ) {
 
 
-                Text(text = "Add Item")
+                Text(text = "API Add Item")
             }
 
         }

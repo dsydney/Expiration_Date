@@ -134,6 +134,7 @@ fun Navigation(
     navController: NavHostController,
     startScreen: String,
 
+
 ) {
 
     //
@@ -141,9 +142,10 @@ fun Navigation(
 
         //
         composable("add") {
+            val viewModel = ProductsViewModel()
 
             //This will be our home screen
-            ProductEntryScreen()
+            ProductEntryScreen(viewModel)
 
         }
         composable("view") {
