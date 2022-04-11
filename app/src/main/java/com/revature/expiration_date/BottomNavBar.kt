@@ -188,7 +188,7 @@ fun BottomNavigationBar(
     BottomNavigation(
 
         modifier = modifier,
-        backgroundColor = MaterialTheme.colors.secondary, // Color.DarkGray,
+        backgroundColor = Color.DarkGray,
         elevation = 5.dp
 
     ) {
@@ -198,8 +198,8 @@ fun BottomNavigationBar(
             BottomNavigationItem(
                 selected = selected,
                 onClick = { onItemClick(item) },
-                selectedContentColor = Color.White, // Color.Green,
-                unselectedContentColor = MaterialTheme.colors.secondaryVariant, // Color.Gray,
+                selectedContentColor = Color.Green,
+                unselectedContentColor = Color.Gray,
                 icon = {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
