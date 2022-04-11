@@ -144,19 +144,16 @@ fun Navigation(
         composable("add") {
             val viewModel = ProductsViewModel()
 
-            //This will be our home screen
             ProductEntryScreen(viewModel)
 
         }
         composable("view") {
 
-            //This will be our chat screen
             ProductViewScreen()
 
         }
         composable("settings") {
 
-            //This will be our settings screen
             NotificationSettingsScreen(navController)
 
         }
