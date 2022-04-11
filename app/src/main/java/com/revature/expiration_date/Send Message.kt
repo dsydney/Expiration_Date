@@ -44,9 +44,9 @@ fun SendMessageScreen() {
     )
 
     // FILTER INCOMING ITEMS
-    val itemsExpired = "${viewModel.items.items}\n"
-    val itemsToday = "${viewModel.items.items}\n"
-    val itemsSoon = "${viewModel.items.items}\n"
+//    val itemsExpired = "${viewModel.items.items}\n"
+//    val itemsToday = "${viewModel.items.items}\n"
+//    val itemsSoon = "${viewModel.items.items}\n"
 
     Scaffold(
         topBar = {
@@ -128,9 +128,10 @@ fun SendMessageScreen() {
                                 putExtra(
                                     Intent.EXTRA_TEXT,
                                     "Shopping List:\n" +
-                                        (if (selectExpired) "Expired: $itemsExpired\n" else "") +
-                                        (if (selectToday) "Going Bad: $itemsToday\n" else "") +
-                                        (if (selectSoon) "Replace: $itemsSoon\n" else "") +
+//                                        (if (selectExpired) "Expired: $itemsExpired\n" else "") +
+//                                        (if (selectToday) "Going Bad: $itemsToday\n" else "") +
+//                                        (if (selectSoon) "Replace: $itemsSoon\n" else "") +
+                                        "${viewModel.items.items}\n" +
                                         "Thank you!"
                                 )
                                 type = "text/plain"
@@ -150,14 +151,14 @@ fun SendMessageScreen() {
                         }
                     }) {
                         Text(
-                            text = "Send",
+                            text = "Messenger",
                             style = MaterialTheme.typography.button
                         )
                     }
                     Spacer(Modifier.width(8.dp))
                     Button(onClick = {
                         Log.i("MESSAGE", "Button Notification clicked")
-                        context.startNotification(itemsExpired)
+                        context.startNotification(viewModel.items.items.toString())
                     }) {
                         Text(
                             text = "Notification",
