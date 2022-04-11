@@ -2,20 +2,28 @@
 
 ## Project Description
 
-Here goes your awesome project description!
+An Android app that tracks the expiration dates of food in your kitchen, so there's no more hidden surprises at the back of your refrigerator!
 
 ## Technologies Used
 
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Android SDK - version 7.1.2
+* Android Studio - version 2021.1.1
+* Kotlin - version 1.5.21
+* Jetpack Compose - version 1.0.1
+
+Libraries used include
+* Datastore - version 1.0.0
+* Retrofit2 - version 2.9.0
+* Navigation - version 2.4.1
+* Room Database - version 2.4.2
 
 ## Features
 
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+* Enter each food item with category, location, and expiration date
+* See products listed with remaining good days
+* Sort by storage location
+* Local notification for expired and soon-to-be expired food items
+* Send shopping list as email or text
 
 To-do list:
 * Wow improvement to be done 1
