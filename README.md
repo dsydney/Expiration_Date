@@ -41,16 +41,26 @@ To-do list:
 - Images of what it should look like
 
 ## Usage
+![ExpirationDateWelcome](https://user-images.githubusercontent.com/100386938/163458556-1125bf50-3ded-4a4c-b237-c7ad9c5e6ab2.png)
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+![ExpirationDateLogin](https://user-images.githubusercontent.com/100386938/163458717-d41cfb76-84c6-43ed-9ea2-c9c840d62228.png)
+
+![ExpirationDateNavDrawer](https://user-images.githubusercontent.com/100386938/163458741-6134eced-c6c9-4992-af8d-c530c8b42e15.png)
+
+![ExpirationDateDatePicker](https://user-images.githubusercontent.com/100386938/163458790-d97919a6-656a-4f99-ac43-2cb92fdb5b92.png)
+
+![ExpirationDateDropDownMenu](https://user-images.githubusercontent.com/100386938/163458803-9d4da603-c00b-4e56-b939-6d5498206555.png)
+
+![ExpirationDateNotificationSettings](https://user-images.githubusercontent.com/100386938/163458815-1cf0852a-77b6-4ad7-a0a6-e9f431de7cd1.png)
+
 
 ## Contributors
 
-> David Sydney
-> John Hall
-> Micah Holt
-> Michael Adams
+* David Sydney (<https://github.com/dsydney>)
+* Michael Adams (<https://github.com/DietLasagna>)
+* John Hall (<https://github.com/hlljh5>)
+* Micah Holt(<https://github.com/Levi21333>)
 
 ## License
 
-This project uses the following license: [<license_name>](<link>).
+This project uses the following license: Apache-2.0 (<https://www.apache.org/licenses/LICENSE-2.0.html>).
