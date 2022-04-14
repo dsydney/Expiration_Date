@@ -159,7 +159,8 @@ fun LoginScreen(userViewModel: UserViewModel) {
                             .show()
                         }
                     }
-                }) {
+                }, enabled = word.value.isNotBlank() && username.value.isNotBlank()
+                ) {
                     Text(text = "Login")
                 }
             }
