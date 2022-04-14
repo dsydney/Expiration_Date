@@ -41,8 +41,7 @@ To-do list:
 - Images of what it should look like
 
 ## Usage
-
-https://github.com/dsydney/Expiration_Date/issues/1#issue-1204873499
+![ExpirationDateWelcome](https://user-images.githubusercontent.com/100386938/163458556-1125bf50-3ded-4a4c-b237-c7ad9c5e6ab2.png)
 
 ## Contributors
 
